@@ -1,0 +1,118 @@
+#logo {
+  width: 68%;
+  padding-left: 1em;
+}
+
+body, html {
+  height: 100vh;
+  margin: 0;
+  font: 400 15px/1.8 "Lato", sans-serif;
+  color: #777;
+}
+
+nav {
+  opacity: 0.9;
+}
+
+.bgimg-1 {
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  opacity: 45%;
+}
+
+#backpic {
+  opacity:0.9;
+}
+
+#topfeed {
+  opacity: 1;
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+.caption span.border {
+  background-color: #111;
+  color: #fff;
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 10px;
+}
+
+h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px "Lato", sans-serif;
+  color: #111;
+}
+
+.question {
+  font-size: 135%;
+  text-transform: bold;
+  text-transform: italic;
+  text-transform: uppercase;
+  font-family: 'Orienta', sans-serif;
+  padding-left: 4.5em;
+  padding-right: 4.5em;
+  color: rgb(117, 61, 61);
+  text-align: center;
+  font-weight: 900;
+}
+
+.question2 {
+  font-size: 120%;
+  text-transform: bold;
+  text-transform: italic;
+  text-transform: lowercase;
+  font-family: 'Orienta', sans-serif;
+  padding-left: 4.5em;
+  padding-right: 4.5em;
+  opacity: 1;
+  color: rgb(66, 42, 42);
+  text-align: center;
+}
+
+.sentence {
+  font-size: 120%;
+  text-transform: bold;
+  text-transform: italic;
+  text-transform: lowercase;
+  font-family: 'Orienta', sans-serif;
+  padding-left: 25em;
+  opacity: 1;
+  color: rgb(66, 42, 42);
+}
+
+#signup {
+  margin-left: 18.5em;
+  font-family: 'Orienta', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  box-shadow: 10px 10px 5px  rgb(30, 85, 168);
+}
+
+#login {
+  margin-left: 3em;
+  font-family: 'Orienta', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  box-shadow: 10px 10px 2px rgb(30, 85, 168);
+}
+
+.closing {
+  text-align:center;
+  text-transform: uppercase;
+  color: black;
+  letter-spacing: .1em;
+  font-family: 'Orienta', sans-serif;
+  font-weight: 900;
+}

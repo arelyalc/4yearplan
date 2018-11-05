@@ -1,0 +1,66 @@
+
+<body class="container">
+    <!-- Browse the components and utilities sections under documentation at http://getbootstrap.com/. There, you will find the modal, tabs, side panel and other features shown in the video. See my pointers in red in the attached screenshots. Please note that my CSS file only contained 5-6 style definitions. The rest was made possible with Bootstrap alone. -->
+    <nav class="navbar navbar-expand-lg navbar-light navbar-fixed-top" style="background-color: #354ca1;">
+        <a class="navbar-brand" href="#">
+            <img id="logo" src="http://s2.smu.edu/~aalcantara/picture/LogoLyle.png" alt="SMU Lyle logo"/>
+        </a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#" style="color: white;">Schedule <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown active">
+                <a class="nav-link dropdown-toggle" style="color: white;" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    My Account
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Update Profile</a>
+                    <a class="dropdown-item" href="#">Change Password</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Log out</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <br>
+    <div>
+        <div class="card float-right" style="width: 16rem;">
+            <img class="card-img-top" src="http://s2.smu.edu/~aalcantara/picture/smu.jpg" alt="Card image cap - SMU campus">
+            <div class="card-body">
+                <h4 class="card-title">Course Catalog</h4>
+                <p class="card-text">Click below to view the full undergraduate course catalog.</p>
+                <a href="https://www.smu.edu/~/media/Site/catalog/PDF/UGrad/2014/2014_SMU_UGcatalog_LyleSchoolSection.ashx" target="_blank" class="btn btn-block btn-primary">View Catalog</a>
+            </div>
+        </div>
+        <h1>4-year generator <button type="button" class="btn btn-success float-right button-wrapper" data-toggle="modal" data-target="#ClassModal"> Generator</button></h1>
+    </div>
+
+    <ul class="nav navWrapper" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" role="tab" href="#fall2017" style="background-color:#FDF2F2; color: black; margin-right: 1em;">My Dashboard</a>
+        </li>
+        <li></li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" role="tab" href="#spring2018" style=" color: black; background-color:#FDF2E2;">Saved Plans</a>
+        </li>
+    </ul>
+    <div class="container tab-content" id="Bottom">
+        <div class="tab-pane active" id="fall2017" role="tabpanel" style="background-color:#FDF2F2;">
+            <img src="http://s2.smu.edu/~aalcantara/picture/robot.png" alt="robot picture" class="center"/>
+            <br>
+            <h6 id="fallMsg" style="text-align: center; color: gray;">
+                You have nothing on your <b>dashboard</b> yet :(
+            </h6>
+        </div>
+        <div class="tab-pane" id="spring2018" role="tabpanel" style="background-color:#FDF2E2;">
+            <img src="http://s2.smu.edu/~aalcantara/picture/robot.png" alt="robot picture" class="center"/>
+            <br>
+            <h6 id="fallMsg" style="text-align: center; color: gray;">
+                You do not have any <b>previously saved</b> 4-year plans.
+            </h6>
+        </div>
+        <br>
+    </div>
+
+</body>
+
