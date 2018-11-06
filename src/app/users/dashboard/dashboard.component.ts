@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Class } from 'src/app/models/class';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,10 +10,11 @@ import { Class } from 'src/app/models/class';
 export class DashboardComponent implements OnInit {
 
   taken: string[];
-  current: Class;
   options: Class[];
 
-  constructor() { }
+  constructor(
+    private activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit() {
     this.options = [

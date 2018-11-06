@@ -5,12 +5,12 @@ import { AppComponent } from './app.component';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        FormsModule
-      ],
       declarations: [
         AppComponent
       ],
+      imports: [
+        FormsModule
+      ]
     }).compileComponents();
   }));
 

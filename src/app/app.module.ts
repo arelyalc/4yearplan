@@ -39,7 +39,7 @@ const DefaultRoute = 'home';
       UsersModule
    ],
    exports: [RouterModule],
-   providers: [],
+   providers: [UsersRoutingModule],
    bootstrap: [AppComponent]
 })
 export class AppModule { }
