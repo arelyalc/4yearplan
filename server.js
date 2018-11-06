@@ -13,7 +13,7 @@ var db = require('./config/db');
 var pass = require('./config/passport');
 
 var port = process.env.PORT || 8080; // set our port
-// mongoose.connect(db.url); // connect to our mongoDB database (commented out after you enter in your own credentials)
+mongoose.connect(db.url); // connect to our mongoDB database (commented out after you enter in your own credentials)
 
 // api middleware ========================================
 app.use(bodyParser.json()); // parse application/json 
