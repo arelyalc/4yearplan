@@ -10,6 +10,10 @@ import { RouterModule, Router } from '@angular/router';
 import {UsersRoutingModule} from './users/users-routing.module'
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { UsersModule } from './users/users.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { DomainModule } from './domain/domain.module';
+import { RegistrationService } from './domain/services';
 
 let DefaultRoute = 'home';
 
@@ -23,6 +27,10 @@ let DefaultRoute = 'home';
    ],
    imports: [
       BrowserModule,
+      FormsModule,
+      HttpClientModule,
+      ReactiveFormsModule,
+      DomainModule,
       RouterModule.forRoot([
           {path: 'home', component: HomePageComponent},
           {path: 'login', component: LoginComponent},
@@ -31,9 +39,12 @@ let DefaultRoute = 'home';
           {path: '', redirectTo: DefaultRoute, pathMatch: 'full'},
           {path: '**', redirectTo: DefaultRoute, pathMatch: 'full'}
       ]),
-      UsersModule
+      UsersModule,
+      ReactiveFormsModule
    ],
-   providers: [],
+   providers: [
+       RegistrationService
+   ],
    bootstrap: [
       AppComponent
    ]
