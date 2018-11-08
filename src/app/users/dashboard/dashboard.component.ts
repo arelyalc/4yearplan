@@ -9,7 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
-  taken: string[];
+  @Input()
+  taken: string[] = [];
   options: Class[];
 
   constructor(
@@ -52,4 +53,18 @@ export class DashboardComponent implements OnInit {
     ];
   }
 
+  changed(e) {
+    const temp = e.target.value;
+    this.selected(temp);
+    // this.taken.push(e.target.value);
+  }
+
+  save() {
+    console.log(this.taken);
+  }
+
+  selected(code: string) {
+    this.taken.push(code);
+    console.log(this.taken);
+  }
 }

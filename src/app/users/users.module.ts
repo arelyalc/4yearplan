@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AccountComponent} from './account/account.component'
-import { DashboardComponent} from './dashboard/dashboard.component'
-import {UsersRoutingModule} from './users-routing.module'
+import { AccountComponent} from './account/account.component';
+import { DashboardComponent} from './dashboard/dashboard.component';
+import {UsersRoutingModule} from './users-routing.module';
 
 
 @NgModule({
