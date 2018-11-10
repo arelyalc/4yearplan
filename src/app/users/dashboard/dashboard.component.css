@@ -27,3 +27,13 @@
     margin-right: auto;
     width: 35%;
 }
+
+#title {
+    font-family: 'Palatino', sans-serif;
+    letter-spacing: .05em;
+    margin-left: .6em;
+}
+
+#robot {
+    opacity: 0.3;
+}

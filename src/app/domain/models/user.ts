@@ -10,16 +10,12 @@ export class User implements Serializable<User> {
 
     constructor() {}
 
-    deserialize(input: object): User{
+    deserialize(input: object): User {
         var user = new User();
-
         user.id = input['id'];
         user.email = input['email'];
         user.fullName = input['fullName'];
         user.studentID = input['studentID'];
-
-        
-
         return user;
     }
     serialize(obj: object): string

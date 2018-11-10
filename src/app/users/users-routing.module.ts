@@ -4,10 +4,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AccountComponent } from './account/account.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
 
 const routes: Routes = [
   {path: 'user/account', component: AccountComponent},
-  {path: 'user/dashboard', component: DashboardComponent}
+  {path: 'user/dashboard', component: DashboardComponent},
+  {path: 'user/settings', component: ProfileSettingsComponent}
 ];
 
 @NgModule({

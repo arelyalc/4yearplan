@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "studentID": "49490909",
+      "fullName": "Arely Alcantara",
+      "email": "arely0715@gmail.com",
+      "password": "12345"
+    }
+  ]
+}
