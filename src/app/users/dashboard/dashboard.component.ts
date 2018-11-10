@@ -1,6 +1,8 @@
+import { RepositoryService } from 'src/app/domain/services';
 import { Component, OnInit, Input } from '@angular/core';
 import { Class } from 'src/app/models/class';
 import { ActivatedRoute } from '@angular/router';
+import { Plan } from 'src/app/domain/models/plan';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,9 +14,11 @@ export class DashboardComponent implements OnInit {
   @Input()
   taken: string[] = [];
   options: Class[];
+  plan: Plan;
 
   constructor(
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private plans: RepositoryService<Plan>
   ) { }
 
   ngOnInit() {
@@ -51,6 +55,10 @@ export class DashboardComponent implements OnInit {
       { code: 'QF', name: 'Statistics'},
       { code: 'None', name: 'World History'}
     ];
+    this.plans.getPlan(49490909).subscribe((plan) => {
+      this.plan = plan[0];
+      console.log(this.plan);
+    });
   }
 
   changed(e) {

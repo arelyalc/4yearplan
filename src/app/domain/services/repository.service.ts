@@ -4,11 +4,12 @@ import {HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { User } from '../models';
+import { Plan } from '../models/plan';
 
 @Injectable()
 export abstract class RepositoryService<T> {
 
-protected endPoint = 'http://localhost:3004/users';
+protected endPoint = 'http://localhost:3004';
 
 constructor(protected httpClient: HttpClient) { }
 
@@ -19,14 +20,14 @@ protected httpOptions =
     })
 };
 public add(item: T): Observable<T> {
-  return this.httpClient.post<T>(`${this.endPoint}`, item, this.httpOptions).pipe(
+  return this.httpClient.post<T>(`${this.endPoint}/users`, item, this.httpOptions).pipe(
     catchError(this.handleException)
   );
 }
 
 getById(id: number): Observable<User> {
   return this.httpClient
-  .get<User>(`${this.endPoint}/${id}`, this.httpOptions)
+  .get<User>(`${this.endPoint}/users/${id}`, this.httpOptions)
   .pipe(catchError(this.handleException));
 }
 
@@ -41,6 +42,15 @@ public delete(id: number): Observable<T> {
     catchError(this.handleException)
   );
 }
+
+// using this route for testing along with db.json
+// remove later
+getPlan(id: number): Observable<Plan> {
+  return this.httpClient
+  .get<Plan>(`${this.endPoint}/4yearplan/?studentID=${id}`, this.httpOptions)
+  .pipe(catchError(this.handleException));
+}
+
 protected handleException(exception: any) {
   const message = `${exception.status} : ${exception.statusText}\r\n${exception.message}`;
   alert(message);

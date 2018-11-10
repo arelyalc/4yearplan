@@ -40,7 +40,7 @@ export class ProfileSettingsComponent implements OnInit {
   }
 
   updateStudent(event) {
-    const newId = event.target.value;
+    const newId = +event.target.value;
     this.user.studentID = newId;
     this.users.update(this.user).subscribe((account) => {
       console.log(this.user);

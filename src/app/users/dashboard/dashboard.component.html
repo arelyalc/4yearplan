@@ -41,12 +41,72 @@
         </li>
     </ul>
     <div class="container tab-content" id="Bottom">
-        <div class="tab-pane active" id="fall2017" role="tabpanel" style="background-color:#FDF2F2;">
+        <div class="tab-pane active" id="fall2017" role="tabpanel" style="background-color:#FDF2F2;" *ngIf=!plan>
             <img id='robot' src="http://s2.smu.edu/~aalcantara/picture/robot.png" alt="robot picture" class="center"/>
             <br>
             <h6 id="fallMsg" style="text-align: center; color: rgb(27, 25, 25);">
                 You have nothing on your <b>dashboard</b> yet :(
             </h6>
+        </div>
+        <div class="tab-pane active" role="tabpanel" style="background-color:#FDF2F2;" *ngIf=plan>
+            <div class="row">
+                <div class="col-3">
+                    <h5 class="year">Year 1</h5>
+                    <div id="height" style="background-color: white;">
+                        <br>
+                        <div id="classes" *ngFor="let class of plan.sem1">
+                            {{class}}
+                        </div>
+                        <br> <br>
+                        <div id="classes" *ngFor="let class of plan.sem2">
+                            {{class}}
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <h5 class="year">Year 2</h5>
+                    <div id="height" style="background-color: white;">
+                        <br>
+                        <div id="classes" *ngFor="let class of plan.sem3">
+                            {{class}}
+                        </div>
+                        <br> <br>
+                        <div id="classes" *ngFor="let class of plan.sem4">
+                            {{class}}
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <h5 class="year">Year 3</h5>
+                    <div id="height" style="background-color: white;">
+                        <br>
+                        <div id="classes" *ngFor="let class of plan.sem5">
+                            {{class}}
+                        </div>
+                        <br> <br>
+                        <div id="classes" *ngFor="let class of plan.sem6">
+                            {{class}}
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <h5 class="year">Year 4</h5>
+                    <div id="height" style="background-color: white;">
+                        <br>
+                        <div id="classes" *ngFor="let class of plan.sem7">
+                            {{class}}
+                        </div>
+                        <br> <br>
+                        <div id="classes" *ngFor="let class of plan.sem8">
+                            {{class}}
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="tab-pane" id="spring2018" role="tabpanel" style="background-color:#FDF2E2;">
             <img id='robot' src="http://s2.smu.edu/~aalcantara/picture/robot.png" alt="robot picture" class="center"/>
@@ -76,7 +136,7 @@
                                     <option
                                     *ngFor="let option of options"
                                     [value]='option.code'>
-                                    {{ option.name }}
+                                     {{ option.name }}
                                     </option> 
                                 </select>
                             </div>
@@ -91,4 +151,3 @@
            
         </div>
 </body>
-

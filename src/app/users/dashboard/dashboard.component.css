@@ -37,3 +37,18 @@
 #robot {
     opacity: 0.3;
 }
+
+.year {
+    font-family: 'Chalkduster';
+    text-align: center;
+}
+
+#classes {
+    font-family: 'Chalkduster';
+    text-align: center;
+    color: rgb(184, 75, 75);
+}
+
+#height {
+    min-height: 23em;
+}
