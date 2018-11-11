@@ -7,15 +7,23 @@ var UserSchema = new mongoose.Schema({
     email: String,
     name: String,
     smuId: Number, 
+    password: String,
     hash: String, 
     salt: String, 
-    taken: [ObjectId] 
+    taken: [String] 
     //assumption: front handles ap translation to courses (or requirements, tbd)
 });
 
 UserSchema.methods.setPassword = function(password){
-    this.salt = crypto.randomBytes(16).toString('hex');
-    this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');
+    this.salt = crypto.randomBytes(Math.ceil(16/2))
+                      .toString('hex') /** convert to hexadecimal format */
+                      .slice(0,16);   /** return required number of characters */
+    hash = crypto.createHmac('sha512', this.salt); 
+    hash.update(password); 
+    this.hash = hash; 
+    
+     //this.salt = crypto.randomBytes(16).toString('hex');
+    //this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');
   };
   
   UserSchema.methods.validPassword = function(password) {

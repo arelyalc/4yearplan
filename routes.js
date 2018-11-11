@@ -17,107 +17,106 @@ module.exports = function (app) {
 	// takes in name email smu id and password
 	app.post('/api/register', function (req, res, next) {
 
-		var user = new User(); //check with christian make sure random id is part of this
-
+		var user = new User(); 
 		user.name = req.body.name;
-		user.smuId = req.body.id;
+		user.smuId = req.body.smuId;
 		user.email = req.body.email;
+		user.password = req.body.password; 
 
-		user.setPassword(req.body.password);
+		//user.setPassword(req.body.password);
 
-		user.save(function (err) {
-			var token;
-			token = user.generateJwt();
+		user.save(function (err, user) {
+			if (err) return console.error(err);
 			res.status(200);
-			res.json({
-				"token": token
-			});
+			res.send('User saved'); 
 		});
-
 	});
-
 	// LOGIN
-	// takes in ?? where does user come from? come back to this
+	// takes in smu id and password
 	app.post('/api/login', function (req, res, next) {
-
-		// how does passport know what user is 
-		passport.authenticate('local', function (err, user, info) {
-			var token;
-
-			// If Passport throws/catches an error
+		
+		User.findOne({ smuId : req.body.smuId }, function(err, user){
 			if (err) {
-				res.status(404).json(err);
-				return;
+				res.status(404);
+				res.send('User not found'); 
+				throw err; 
 			}
+			if (req.body.password == user.password) {
+				res.status(200).json(user); 
+			} 
+			else {
+				res.status(500); 
+				res.send('Invalid password'); 
+			}
+		}
+		);
+		// how does passport know what user is 
+		// passport.authenticate('local', function (err, user, info) {
+		// 	var token;
 
-			// If a user is found
-			if (user) {
-				token = user.generateJwt();
-				res.status(200);
-				res.json({
-					"token": token
-				});
-			} else {
-				// If user is not found
-				res.status(401).json(info);
-			}
-		})(req, res);
+		// 	// If Passport throws/catches an error
+		// 	if (err) {
+		// 		res.status(404).json(err);
+		// 		return;
+		// 	}
+
+		// 	// If a user is found
+		// 	if (user) {
+		// 		token = user.generateJwt();
+		// 		res.status(200);
+		// 		res.json({
+		// 			"token": token
+		// 		});
+		// 	} else {
+		// 		// If user is not found
+		// 		res.status(401).json(info);
+		// 	}
+		// })(req, res);
 
 	});
 
-	// RETRIEVE USER PROFILE
-	// what is this even used for, shouldn't the previous
-	// post just also send back the user if found? ya I think so 
-	app.get('/api/profile', function (req, res, next) {
-
-		User
-			.findById(req.payload._id)
-			.exec(function (err, user) {
-				res.status(200).json(user);
-			});
-
-	});
 
 	// SAVE PREVIOUS CREDIT
-	// pass in smuID and taken (array of class code strings)
-	app.post('/api/prevCredit', function (req, res, next) {
+	// pass in smuId and taken (array of class code strings)
+	app.put('/api/prevCredit', function (req, res, next) {
 
-		var myquery = { smuId: req.smuId };
-		var newvalues = { $set: { taken: req.taken } };
-		db.collection("users").updateOne(myquery, newvalues, function (err, res) {
+		var myquery = { smuId: req.body.smuId };
+		var newvalues = { $set: { taken: req.body.taken } };
+		User.updateOne(myquery, newvalues, function (err, info) {
 			if (err) throw err;
-			console.log("Previous credit added to user");
+			res.status(200).json('Previous credit added to user'); 
 		});
-
-	});
-
-	// GET ALL SAVED PLANS
-	// pass in smu id in request url
-	app.get('/api/savedPlans', function (req, res, next) {
-		db.collection("plans").find({
-
-			smuID: req.query.smuID
-			
-		}).then(plans => {
-
-			res.send(plans);
-
-		}).catch(err => {
-
-			res.status(500).send({
-				message: err.message || "Some error occurred while retrieving user plans"
-			});
-
-		});
-
 	});
 
 	// POST PLAN (save with userID)
 	// pass in plan json and user id number 
-	// app.post('/api/saveCurrentPlan', function(req, res, next) {
-	// 	db.collection
-	// })
+	app.post('/api/saveCurrentPlan', function(req, res, next) {
+		
+	})
 
+
+	// GET ALL SAVED PLANS
+	// pass in smu id in request url
+	app.get('/api/savedPlans', function (req, res, next) {
+		Plan.findOne({ smuId: req.query.smuId })
+			.then(plans => {
+
+				if(plans == null) {
+					res.send('No saved plans'); 
+				}
+				else {
+					res.send(plans); 
+				}
+			}).catch(err => {
+
+				res.status(500).send({
+					message: err.message || "Some error occurred while retrieving user plans"
+				});
+			});
+
+	});
+
+	
 	// GET PLAN (generate plan given user)
 	//app.get
 	//and then get all classes
@@ -131,7 +130,7 @@ module.exports = function (app) {
 	// frontend routes =========================================================
 	// route to handle all angular requests
 	app.get('/', function (req, res) {
-		res.sendfile('./public/index.html');
+		res.sendFile('./public/index.html');
 	});
 
 }
