@@ -5,6 +5,7 @@ var mongoose       = require('mongoose');
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
 var passport       = require('passport'); 
+const cors         = require('cors'); 
 
 // configuration ===========================================
 	
@@ -16,6 +17,7 @@ var port = process.env.PORT || 3000; // set our port
 mongoose.connect(db.url, {useNewUrlParser: true}); // connect to our mongoDB database 
 
 // api middleware ========================================
+app.use(cors());
 app.use(bodyParser.json()); // parse application/json 
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 app.use(bodyParser.urlencoded({ extended: true })); // parse application/x-www-form-urlencoded
