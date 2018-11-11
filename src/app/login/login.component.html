@@ -17,13 +17,13 @@
         <br>
         <br>
         <form>
-            <input type="text" id="email" class="fadeIn second" name="login" placeholder="email" required>
+            <input [(ngModel)]="email" type="text" id="email" class="fadeIn second" name="login" placeholder="email" required>
             <br>
             <br>
-            <input type="text" id="password" class="fadeIn third" name="login" placeholder="password" required>
+            <input [(ngModel)]="password" type="text" id="password" class="fadeIn third" name="login" placeholder="password" required>
             <br>
             <br>
-            <input type="submit" class="fadeIn fourth" value="Log In">
+            <input type="submit" class="fadeIn fourth" value="Log In" (click)="login()">
         </form>
 
             <!-- Remind Passowrd -->

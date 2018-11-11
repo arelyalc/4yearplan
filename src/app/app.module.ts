@@ -13,7 +13,7 @@ import { UsersModule } from './users/users.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DomainModule } from './domain/domain.module';
-import { RegistrationService } from './domain/services';
+import { RegistrationService, UserService, SigninService } from './domain/services';
 
 let DefaultRoute = 'home';
 
@@ -43,7 +43,9 @@ let DefaultRoute = 'home';
       ReactiveFormsModule
    ],
    providers: [
-       RegistrationService
+       RegistrationService,
+       UserService,
+       SigninService
    ],
    bootstrap: [
       AppComponent
