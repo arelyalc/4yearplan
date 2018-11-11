@@ -37,15 +37,14 @@ module.exports = function (app) {
 		User.findOne({ email : req.body.email }, function(err, user){
 			if (err) {
 				res.status(404);
-				res.send('User not found'); 
+				res.send(err); 
 				throw err; 
 			}
 			if (req.body.password == user.password) {
 				res.status(200).json(user); 
 			} 
 			else {
-				res.status(500); 
-				res.send('Invalid password'); 
+				res.status(500).send('Invalid password'); 
 			}
 		}
 		);
