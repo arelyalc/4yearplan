@@ -80,7 +80,7 @@ module.exports = function (app) {
 		var myquery = { _id: req.body.id };
 		var newvalues = { $set: { taken: req.body.taken } };
 		User.updateOne(myquery, newvalues, function (err, info) {
-			if (err) throw err;
+			//if (err) throw err;
 			res.status(200).json('Previous credit added to user'); 
 		});
 	});
