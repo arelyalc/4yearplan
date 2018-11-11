@@ -66,7 +66,6 @@ export class DashboardComponent implements OnInit {
   changed(e) {
     const temp = e.target.value;
     this.selected(temp);
-   // this.taken.push(e.target.value);
   }
 
   save() {
