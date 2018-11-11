@@ -38,7 +38,7 @@ module.exports = function (app) {
 			if (err) {
 				res.status(404);
 				res.send(err); 
-				throw err; 
+				//throw err; 
 			}
 			if (req.body.password == user.password) {
 				res.status(200).json(user); 
