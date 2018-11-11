@@ -40,7 +40,7 @@ module.exports = function (app) {
 				//throw err; 
 			}
 			if (req.body.password.trim() == user.password.trim()) {
-				res.status(200).send(user._id); 
+				res.status(200).send(user.id); 
 			} 
 			else {
 				res.status(500).send('Invalid password'); 
