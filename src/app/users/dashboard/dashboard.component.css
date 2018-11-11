@@ -27,3 +27,33 @@
     margin-right: auto;
     width: 35%;
 }
+
+#title {
+    font-family: 'Palatino', sans-serif;
+    letter-spacing: .05em;
+    margin-left: .6em;
+}
+
+#robot {
+    opacity: 0.3;
+}
+
+.year {
+    font-family: 'Chalkduster';
+    text-align: center;
+}
+
+#classes {
+    font-family: 'Chalkduster';
+    text-align: center;
+    color: rgb(184, 75, 75);
+}
+
+#height {
+    min-height: 23em;
+}
+
+.saveBtn {
+    font-size: 97%;
+    margin-left: 47.5em;
+}

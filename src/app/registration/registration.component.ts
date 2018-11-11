@@ -22,7 +22,7 @@ export class RegistrationComponent implements OnInit {
   public save(){
     console.log(this.user)
     this.signup.add(this.user).subscribe(x => {
-      //this.router.navigateByUrl('home');
+      // this.router.navigateByUrl('home');
     });
 
   }

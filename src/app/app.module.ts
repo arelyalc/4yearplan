@@ -7,7 +7,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { RouterModule, Router } from '@angular/router';
-import {UsersRoutingModule} from './users/users-routing.module'
+import {UsersRoutingModule} from './users/users-routing.module';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { UsersModule } from './users/users.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -15,7 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DomainModule } from './domain/domain.module';
 import { RegistrationService, UserService, SigninService } from './domain/services';
 
-let DefaultRoute = 'home';
+const DefaultRoute = 'home';
 
 @NgModule({
    declarations: [

@@ -9,8 +9,10 @@ import { catchError } from 'rxjs/operators';
 export class RegistrationService extends RepositoryService<User> {
   protected endPoint = 'http://localhost:3000/users';
 
-  constructor(protected httpClient: HttpClient) {
-    super(httpClient)
+  constructor(
+    protected httpClient: HttpClient
+    ) {
+    super(httpClient);
    }
 
    public add(item: User): Observable<User>
