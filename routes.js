@@ -35,7 +35,7 @@ module.exports = function (app) {
 	// takes in smu id and password
 	app.post('/api/login', function (req, res, next) {
 		
-		User.findOne({ smuId : req.body.smuId }, function(err, user){
+		User.findOne({ email : req.body.email }, function(err, user){
 			if (err) {
 				res.status(404);
 				res.send('User not found'); 
