@@ -27,8 +27,7 @@ module.exports = function (app) {
 
 		user.save(function (err, user) {
 			if (err) return console.error(err);
-			res.status(200);
-			res.send('User saved'); 
+			res.status(200).json(user); 
 		});
 	});
 	// LOGIN
