@@ -3,8 +3,8 @@ import {Serializable} from '../interfaces';
 export class User implements Serializable<User> {
     id?: number;
     email?: string;
-    fullName?: string;
-    studentID?: number;
+    name?: string;
+    smuId?: number;
     password?: string;
 
 
@@ -14,8 +14,8 @@ export class User implements Serializable<User> {
         const user = new User();
         user.id = input['id'];
         user.email = input['email'];
-        user.fullName = input['fullName'];
-        user.studentID = input['studentID'];
+        user.name = input['name'];
+        user.smuId = input['smuId'];
         return user;
     }
     serialize(obj: object): string {

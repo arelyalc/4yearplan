@@ -19,8 +19,8 @@ export class RegistrationComponent implements OnInit {
   ngOnInit() {
     this.user = new User();
   }
-  public save(){
-    console.log(this.user)
+  public save() {
+    console.log(this.user);
     this.signup.add(this.user).subscribe(x => {
       // this.router.navigateByUrl('home');
     });

@@ -7,7 +7,7 @@ import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class RegistrationService extends RepositoryService<User> {
-  protected endPoint = 'http://localhost:3000/users';
+  protected endPoint = 'http://localhost:3000/api';
 
   constructor(
     protected httpClient: HttpClient
@@ -18,13 +18,14 @@ export class RegistrationService extends RepositoryService<User> {
    public add(item: User): Observable<User>
    {
      var obj = {
-       fullName: item.fullName,
+       name: item.name,
        email: item.email,
+       smuId: item.smuId,
        password: item.password
      }
      //const user = item.serialize(obj)
      //console.log(user)
-     return this.httpClient.post<User>(`${this.endPoint}`, item, this.httpOptions).pipe(
+     return this.httpClient.post<User>(`${this.endPoint}/register`, item, this.httpOptions).pipe(
       catchError(this.handleException)
     );
    }
