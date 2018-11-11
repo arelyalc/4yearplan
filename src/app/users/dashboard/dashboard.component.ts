@@ -1,7 +1,7 @@
 import { RepositoryService } from 'src/app/domain/services';
 import { Component, OnInit, Input } from '@angular/core';
 import { Class } from 'src/app/models/class';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Plan } from 'src/app/domain/models/plan';
 
 @Component({
@@ -15,9 +15,11 @@ export class DashboardComponent implements OnInit {
   taken: string[] = [];
   options: Class[];
   plan: Plan;
+  planList: Plan[];
 
   constructor(
     private activatedRoute: ActivatedRoute,
+    private router: Router,
     private plans: RepositoryService<Plan>
   ) { }
 
@@ -57,18 +59,25 @@ export class DashboardComponent implements OnInit {
     ];
     this.plans.getPlan(49490909).subscribe((plan) => {
       this.plan = plan[0];
-      console.log(this.plan);
     });
   }
 
   changed(e) {
     const temp = e.target.value;
     this.selected(temp);
-    // this.taken.push(e.target.value);
+   // this.taken.push(e.target.value);
   }
 
   save() {
     console.log(this.taken);
+  }
+
+  savePlan() {
+    this.plan.name = '4 year plan ' + this.plan.id;
+    this.plan.date = new Date();
+    this.plans.updatePlan(this.plan).subscribe((plan) => {
+    });
+    alert('successfully saved your plan!! check it out under saved plans tab ~');
   }
 
   selected(code: string) {

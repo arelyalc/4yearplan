@@ -33,7 +33,13 @@ getById(id: number): Observable<User> {
 
 update(updatedUser: User): Observable<User> {
   return this.httpClient
-  .put<User>(`${this.endPoint}/${updatedUser.id}`, updatedUser, this.httpOptions)
+  .put<User>(`${this.endPoint}/users/${updatedUser.id}`, updatedUser, this.httpOptions)
+  .pipe(catchError(this.handleException));
+}
+
+updatePlan(updatedPlan: Plan): Observable<Plan> {
+  return this.httpClient
+  .put<Plan>(`${this.endPoint}/4yearplan/${updatedPlan.id}`, updatedPlan, this.httpOptions)
   .pipe(catchError(this.handleException));
 }
 

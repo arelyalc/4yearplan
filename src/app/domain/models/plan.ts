@@ -2,6 +2,8 @@ import { Serializable } from './../interfaces/serializable';
 
 export class Plan implements Serializable<Plan> {
     id?: number;
+    name?: string;
+    date?: Date;
     studentID?: number;
     sem1: string[];
     sem2: string[];

@@ -12,14 +12,65 @@
     {
       "id": 1,
       "studentID": 49490909,
-      "sem1": ["MATH 1337", "DISC 1312", "PRW 1101", "CSE 1341", "KNW 2300"],
-      "sem2": ["MATH 1338", "DISC 1313", "PRW II", "Foreign Language", "CSE 2240", "PHYS 1303/1105"],
-      "sem3": ["MATH 3353", "CSE 2341", "Foreign Lang. 2", "PHYS 1304/1106", "CSE 2353"],
-      "sem4": ["Science Elective", "CSE 3381", "CSE 3330", "CSE 4340", "CSE 3342"],
-      "sem5": ["CSE 3353", "CSE 3339", "MATH 3315/3316", "Track Elective", "CSE 3345"],
-      "sem6": ["CSE 4344", "CSE 5343", "Track Elective", "Leadership", "CSE 4381"],
-      "sem7": ["CSE 4345", "Track Elective", "CSE 4351", "CSE 4360", "Political UC"],
-      "sem8": ["Track Elective", "Philosophy UC", "Science Elective", "Creativity UC", "CSE 4352"]
+      "sem1": [
+        "MATH 1337",
+        "DISC 1312",
+        "PRW 1101",
+        "CSE 1341",
+        "KNW 2300"
+      ],
+      "sem2": [
+        "MATH 1338",
+        "DISC 1313",
+        "PRW II",
+        "Foreign Language",
+        "CSE 2240",
+        "PHYS 1303/1105"
+      ],
+      "sem3": [
+        "MATH 3353",
+        "CSE 2341",
+        "Foreign Lang. 2",
+        "PHYS 1304/1106",
+        "CSE 2353"
+      ],
+      "sem4": [
+        "Science Elective",
+        "CSE 3381",
+        "CSE 3330",
+        "CSE 4340",
+        "CSE 3342"
+      ],
+      "sem5": [
+        "CSE 3353",
+        "CSE 3339",
+        "MATH 3315/3316",
+        "Track Elective",
+        "CSE 3345"
+      ],
+      "sem6": [
+        "CSE 4344",
+        "CSE 5343",
+        "Track Elective",
+        "Leadership",
+        "CSE 4381"
+      ],
+      "sem7": [
+        "CSE 4345",
+        "Track Elective",
+        "CSE 4351",
+        "CSE 4360",
+        "Political UC"
+      ],
+      "sem8": [
+        "Track Elective",
+        "Philosophy UC",
+        "Science Elective",
+        "Creativity UC",
+        "CSE 4352"
+      ],
+      "name": "4 year plan 1",
+      "date": "2018-11-11T05:26:45.635Z"
     }
   ]
 }
