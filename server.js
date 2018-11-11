@@ -4,16 +4,16 @@ var app            = express();
 var mongoose       = require('mongoose');
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
-var passport = require('passport'); 
+var passport       = require('passport'); 
 
 // configuration ===========================================
 	
 // config files
-var db = require('./config/db');
-var pass = require('./config/passport');
+var db = require('./db');
+var pass = require('./passport');
 
-var port = process.env.PORT || 8080; // set our port
-mongoose.connect(db.url); // connect to our mongoDB database (commented out after you enter in your own credentials)
+var port = process.env.PORT || 3000; // set our port
+mongoose.connect(db.url, {useNewUrlParser: true}); // connect to our mongoDB database 
 
 // api middleware ========================================
 app.use(bodyParser.json()); // parse application/json 
@@ -21,12 +21,12 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse applica
 app.use(bodyParser.urlencoded({ extended: true })); // parse application/x-www-form-urlencoded
 
 app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
-app.use(express.static(__dirname + '/public')); // set the static files location /public/img will be /img for users
+//app.use(express.static(__dirname + '/public')); // set the static files location /public/img will be /img for users
 
 app.use(passport.initialize())
 
 // routes ==================================================
-require('./app/routes')(app); // pass our application into our routes
+require('./routes')(app); // pass our application into our routes
 
 // start app ===============================================
 app.listen(port);	
