@@ -110,12 +110,24 @@
             <br>
             <button class="saveBtn btn btn-lg" type="button" style="background-color: purple; color: white;" (click)="savePlan()">Save!</button>
         </div>
-        <div class="tab-pane" id="spring2018" role="tabpanel" style="background-color:#FDF2E2;">
+        <div class="tab-pane" id="spring2018" role="tabpanel" style="background-color:#FDF2E2;" *ngIf="!planList">
             <img id='robot' src="http://s2.smu.edu/~aalcantara/picture/robot.png" alt="robot picture" class="center"/>
             <br>
             <h6 id="fallMsg" style="text-align: center; color: rgb(27, 25, 25);">
                 You do not have any <b>previously saved</b> 4-year plans.
             </h6>
+        </div>
+        <div class="tab-pane" id="spring2018" role="tabpanel" style="background-color:#FDF2E2;" *ngIf="planList">
+            <div *ngFor="let plan of planList" class="row">
+                <div class="col-6">
+                    <h4 style="text-decoration: underline; font-family: Helvetica; text-align: center;">Plans</h4>
+                    <h5 style="font-family: Helvetica; text-align: center; color: plum;">{{plan.name}}</h5>
+                </div>
+                <div class="col-6">
+                    <h4 style="text-decoration: underline; font-family: Helvetica; text-align: center;">Generated on</h4>
+                    <h5 style="font-family: Helvetica; text-align: center; color: gray;">{{plan.date | date:'longDate'}}</h5>
+                </div>
+            </div>
         </div>
         <br>
     </div>

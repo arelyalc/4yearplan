@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
   taken: string[] = [];
   options: Class[];
   plan: Plan;
-  planList: Plan[];
+  planList: Plan[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -58,6 +58,7 @@ export class DashboardComponent implements OnInit {
       { code: 'None', name: 'World History'}
     ];
     this.plans.getPlan(49490909).subscribe((plan) => {
+      this.planList = plan;
       this.plan = plan[0];
     });
   }
@@ -77,6 +78,7 @@ export class DashboardComponent implements OnInit {
     this.plan.date = new Date();
     this.plans.updatePlan(this.plan).subscribe((plan) => {
     });
+    this.planList.push(this.plan);
     alert('successfully saved your plan!! check it out under saved plans tab ~');
   }
 

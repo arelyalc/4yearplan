@@ -37,9 +37,9 @@ update(updatedUser: User): Observable<User> {
   .pipe(catchError(this.handleException));
 }
 
-updatePlan(updatedPlan: Plan): Observable<Plan> {
+updatePlan(updatedPlan: Plan): Observable<Plan[]> {
   return this.httpClient
-  .put<Plan>(`${this.endPoint}/4yearplan/${updatedPlan.id}`, updatedPlan, this.httpOptions)
+  .put<Plan[]>(`${this.endPoint}/4yearplan/${updatedPlan.id}`, updatedPlan, this.httpOptions)
   .pipe(catchError(this.handleException));
 }
 
