@@ -36,14 +36,17 @@ module.exports = function (app) {
 		
 		User.findOne({ smuId: req.body.smuId }, function(err, user){
 			if (err) {
-				res.status(404).send(err); 
+				res.sendStatus(404);
+				res.send(err); 
 				//throw err; 
 			}
 			if (req.body.password.trim() == user.password.trim()) {
-				res.status(200).send(user.id); 
+				res.sendStatus(200);
+				res.send(user._id); 
 			} 
 			else {
-				res.status(500).send('Invalid password'); 
+				res.sendStatus(500);
+				res.send('Invalid password'); 
 			}
 		}
 		);
