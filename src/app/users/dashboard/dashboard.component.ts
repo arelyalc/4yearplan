@@ -57,10 +57,10 @@ export class DashboardComponent implements OnInit {
       { code: 'QF', name: 'Statistics'},
       { code: 'None', name: 'World History'}
     ];
-    this.plans.getPlan(49490909).subscribe((plan) => {
-      this.planList = plan;
-      this.plan = plan[0];
-    });
+    // this.plans.getPlan(49490909).subscribe((plan) => {
+    //   this.planList = plan;
+    //   this.plan = plan[0];
+    // });
   }
 
   changed(e) {

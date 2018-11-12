@@ -1,3 +1,4 @@
+import { SigninService } from './../domain/services/signin.service';
 import { User } from './../domain/models/user';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -16,7 +17,7 @@ import { RepositoryService } from '../domain/services';
   ],
   declarations: [AccountComponent, DashboardComponent, ProfileSettingsComponent],
   providers: [
-    RepositoryService
+    RepositoryService, SigninService
   ]
 })
 export class UsersModule { }

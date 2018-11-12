@@ -8,21 +8,19 @@ import { SigninService } from '../domain/services/signin.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  public email: string;
+  public smuId: string;
   public password: string;
   constructor(private router: Router,
               private sigin: SigninService) { }
 
   ngOnInit() {
-    this.email = ' ';
+    this.smuId = ' ';
     this.password = ' ';
 
   }
   public login() {
-    this.sigin.logIn(this.email, this.password).subscribe(x => {
-      console.log(x);
-      console.log(x.id);
-      const name = 'user/' + x.id + '/account';
+    this.sigin.logIn(this.smuId, this.password).subscribe(x => {
+      const name = 'user/' + x + '/dashboard';
       this.router.navigateByUrl(name);
       // console.log(x.studentID);
       // let idNum = x.id;

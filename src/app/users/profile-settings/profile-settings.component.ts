@@ -25,7 +25,7 @@ export class ProfileSettingsComponent implements OnInit {
 
   updateName(event) {
     const name = event.target.value;
-    this.user.fullName = name;
+    this.user.name = name;
     this.users.update(this.user).subscribe((account) => {
       console.log(this.user);
     });
@@ -41,7 +41,7 @@ export class ProfileSettingsComponent implements OnInit {
 
   updateStudent(event) {
     const newId = +event.target.value;
-    this.user.studentID = newId;
+    this.user.smuId = newId;
     this.users.update(this.user).subscribe((account) => {
       console.log(this.user);
     });

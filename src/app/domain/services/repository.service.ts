@@ -9,7 +9,7 @@ import { Plan } from '../models/plan';
 @Injectable()
 export abstract class RepositoryService<T> {
 
-protected endPoint = 'http://localhost:3004';
+protected endPoint = 'http://localhost:3000/api';
 
 constructor(protected httpClient: HttpClient) { }
 
@@ -19,6 +19,7 @@ protected httpOptions =
         'Content-Type' : 'application/json'
     })
 };
+
 public add(item: T): Observable<T> {
   return this.httpClient.post<T>(`${this.endPoint}/users`, item, this.httpOptions).pipe(
     catchError(this.handleException)
@@ -51,6 +52,12 @@ public delete(id: number): Observable<T> {
 
 // using this route for testing along with db.json
 // remove later
+getPlans(id: number): Observable<Plan[]> {
+  return this.httpClient
+  .get<Plan[]>(`${this.endPoint}/4yearplan/?studentID=${id}`, this.httpOptions)
+  .pipe(catchError(this.handleException));
+}
+
 getPlan(id: number): Observable<Plan> {
   return this.httpClient
   .get<Plan>(`${this.endPoint}/4yearplan/?studentID=${id}`, this.httpOptions)

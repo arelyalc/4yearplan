@@ -10,20 +10,20 @@ import 'rxjs/add/operator/do';
 
 @Injectable()
 export class SigninService extends RepositoryService<User> {
-  protected endPoint = 'http://localhost:3000/users';
+  protected endPoint = 'http://localhost:3000/api/login';
   public user: User;
   constructor(protected httpClient: HttpClient) {
     super(httpClient);
   }
 
- logIn(email: string, password: string) {
+ logIn(smuId: number, password: string) {
    const obj = {
-     email: email,
+     smuId: smuId,
      password: password
    };
    const item = JSON.stringify(obj);
-   return this.httpClient.get<User>(`${this.endPoint}`,
-     this.httpOptions).do(res => {
+   return this.httpClient.post<User>(`${this.endPoint}`,
+     obj, this.httpOptions).do(res => {
         this.setSession(res);
       }).pipe(catchError(this.handleException));
   }
