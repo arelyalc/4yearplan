@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
       { code: 'HC1', name: 'Art History'},
       { code: 'PASI PASII', name: 'Biology'},
       { code: 'PASI', name: 'Chemistry'},
-      { code: 'CA', name: 'Computer Science A'},
+      { code: 'CA1', name: 'Computer Science A'},
       { code: 'QR', name: 'Economics: Macro'},
       { code: 'QR', name: 'Economics: Micro'},
       { code: 'DISC1 DISC2', name: 'English Lit/Lang'},
@@ -92,7 +92,9 @@ export class DashboardComponent implements OnInit {
 
   // this methos is used to save the selected values to the taken array
   selected(code: string) {
-    this.taken.push(code);
+    if (code !== 'None') {
+      this.taken.push(code);
+    }
     console.log(this.taken);
   }
 
