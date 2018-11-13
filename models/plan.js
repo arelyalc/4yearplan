@@ -3,15 +3,15 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 
 var PlanSchema = new mongoose.Schema({
     name: String, 
-    sem1: [ObjectId], //each semester is an arr of obj ids
-    sem2: [ObjectId], //object ids reference class objects
-    sem3: [ObjectId],
-    sem4: [ObjectId],
-    sem5: [ObjectId],
-    sem6: [ObjectId],
-    sem7: [ObjectId],
-    sem8: [ObjectId],
-    smuID: Number //tied to user
+    sem1: [String], //each semester is an arr of obj ids
+    sem2: [String], //object ids reference class objects
+    sem3: [String],
+    sem4: [String],
+    sem5: [String],
+    sem6: [String],
+    sem7: [String],
+    sem8: [String],
+    userId: Number //tied to user
     
 });
 

@@ -1,12 +1,19 @@
-require('./models/class');
+require('./models/course');
 require('./models/plan');
 require('./models/user');
-var passport = require('passport');
-var mongoose = require('mongoose');
-var User = mongoose.model('User');
-var Plan = mongoose.model('Plan');
-var Class = mongoose.model('Class');
-var db = require('./db');
+
+const passport = require('passport');
+const mongoose = require('mongoose');
+const User = mongoose.model('User');
+const Plan = mongoose.model('Plan');
+const Course = mongoose.model('Course');
+const db = require('./db');
+
+// const fs = require('fs'); 
+// var rawData = fs.readFileSync('courses.json');
+// var courses = JSON.parse(rawData); 
+
+// console.log(courses[0].id); 
 
 module.exports = function (app) {
 
@@ -77,18 +84,55 @@ module.exports = function (app) {
 	// pass in smuId and taken (array of class code strings)
 	app.put('/api/prevCredit', function (req, res, next) {
 
+		var temp = req.body.taken;
+		var final = []; 
+
+		for(var i=0; i<temp.length; i++) {
+
+			uc = temp[i]; 
+
+			if(uc.indexOf(' ') >= 0) {
+
+				var ucs = uc.split(' '); 
+
+				for(var subuc in ucs) {
+					final.push(subuc); 
+				}
+			} 
+			else {
+				final.push(uc); 				
+			}
+
+		}
+		
 		var myquery = { _id: req.body.id };
-		var newvalues = { $set: { taken: req.body.taken } };
+		var newvalues = { $set: { taken: final} };
 		User.updateOne(myquery, newvalues, function (err, info) {
 			//if (err) throw err;
-			res.status(200).json('Previous credit added to user'); 
+			res.status(200).json('Previous credit added to user');  //CHECK THIS FUNCTION CALL
 		});
 	});
 
 	// POST PLAN (save with userID)
 	// pass in plan json and user id number 
 	app.post('/api/saveCurrentPlan', function(req, res, next) {
-		
+
+		var plan = new Plan(); 
+		plan.name = req.body.name;
+		plan.sem1 = req.body.sem1; 
+		plan.sem2 = req.body.sem2; 
+		plan.sem3 = req.body.sem3; 
+		plan.sem4 = req.body.sem4; 
+		plan.sem5 = req.body.sem5; 
+		plan.sem6 = req.body.sem6; 
+		plan.sem7 = req.body.sem7; 
+		plan.sem8 = req.body.sem8; 
+		plan.userId = req.body.userId;
+
+		plan.save(function (err, plan) {
+			if (err) return console.error(err);
+			res.status(200).json(plan); 
+		});		
 	})
 
 
@@ -110,6 +154,50 @@ module.exports = function (app) {
 					message: err.message || "Some error occurred while retrieving user plans"
 				});
 			});
+	});
+
+	// takes in user id
+	app.get('/api/genPlan', function(req, res, next) {
+
+		var obj = {
+
+		}
+		
+		// var num = 1; 	
+
+		// for(var i=0; i<8; i++) {
+		// 	var temp = []; 	
+				
+
+		// 	while(temp.length < 5) {
+		// 		Course.find({ order: num})
+		// 			.then(courses => {
+
+		// 				if(courses.length == 1) {
+		// 					//make taken into a hash set
+							
+		// 					// UC = courses.UC
+		// 					// for each string in UC
+		// 					// 	if taken.contains UC
+		// 					//		break (I don't want to add this course to this semester)
+
+		// 					temp.push(courses.course_id); 
+		// 				}
+
+
+		// 			}).catch(err => {
+
+		// 				res.status(500).send({
+		// 					message: err.message || "Some error occurred while retrieving user plans"
+		// 				});
+		// 			});
+
+		// 		num++;
+		// 	}
+
+
+		//}
+
 
 	});
 
