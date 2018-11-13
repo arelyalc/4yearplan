@@ -117,17 +117,18 @@ module.exports = function (app) {
 	app.post('/api/saveCurrentPlan', function(req, res, next) {
 
 		var plan = new Plan();
-		plan.name = req.body.name;
-		plan.date = req.body.date; 
-		plan.sem1 = req.body.plan.sem1; 
-		plan.sem2 = req.body.plan.sem2; 
-		plan.sem3 = req.body.plan.sem3; 
-		plan.sem4 = req.body.plan.sem4; 
-		plan.sem5 = req.body.plan.sem5; 
-		plan.sem6 = req.body.plan.sem6; 
-		plan.sem7 = req.body.plan.sem7; 
-		plan.sem8 = req.body.plan.sem8; 
-		plan.userId = req.body.userId;
+		plan = req.body.plan; 
+		// plan.name = req.body.plan.name;
+		// plan.date = req.body.plan.date; 
+		// plan.sem1 = req.body.plan.sem1; 
+		// plan.sem2 = req.body.plan.sem2; 
+		// plan.sem3 = req.body.plan.sem3; 
+		// plan.sem4 = req.body.plan.sem4; 
+		// plan.sem5 = req.body.plan.sem5; 
+		// plan.sem6 = req.body.plan.sem6; 
+		// plan.sem7 = req.body.plan.sem7; 
+		// plan.sem8 = req.body.plan.sem8; 
+		// plan.userId = req.body.userId;
 
 		plan.save(function (err, plan) {
 			if (err) return console.error(err);
@@ -138,8 +139,8 @@ module.exports = function (app) {
 
 	// GET ALL SAVED PLANS
 	// pass in smu id in request url
-	app.get('/api/savedPlans', function (req, res, next) {
-		Plan.find({ _id: req.body.id })
+	app.get('/api/savedPlans/:id', function (req, res, next) {
+		Plan.find({ _id: req.query.id })
 			.then(plans => {
 
 				if(plans == null) {
@@ -158,7 +159,7 @@ module.exports = function (app) {
 
 	// takes in user id, use that to find user to get taken array
 	// for gets, param is sent in url, access with req.query.id
-	app.get('/api/genPlan', function(req, res, next) {
+	app.get('/api/genPlan/:id', function(req, res, next) {
 
 		var obj = {  
 			sem1: ["BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH"],
@@ -215,7 +216,7 @@ module.exports = function (app) {
 			}
 
 
-		//}
+		}
 
 
 	});
