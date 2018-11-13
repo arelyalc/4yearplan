@@ -119,14 +119,14 @@ module.exports = function (app) {
 		var plan = new Plan();
 		plan.name = req.body.name;
 		plan.date = req.body.date; 
-		plan.sem1 = req.body.sem1; 
-		plan.sem2 = req.body.sem2; 
-		plan.sem3 = req.body.sem3; 
-		plan.sem4 = req.body.sem4; 
-		plan.sem5 = req.body.sem5; 
-		plan.sem6 = req.body.sem6; 
-		plan.sem7 = req.body.sem7; 
-		plan.sem8 = req.body.sem8; 
+		plan.sem1 = req.body.plan.sem1; 
+		plan.sem2 = req.body.plan.sem2; 
+		plan.sem3 = req.body.plan.sem3; 
+		plan.sem4 = req.body.plan.sem4; 
+		plan.sem5 = req.body.plan.sem5; 
+		plan.sem6 = req.body.plan.sem6; 
+		plan.sem7 = req.body.plan.sem7; 
+		plan.sem8 = req.body.plan.sem8; 
 		plan.userId = req.body.userId;
 
 		plan.save(function (err, plan) {
@@ -139,7 +139,7 @@ module.exports = function (app) {
 	// GET ALL SAVED PLANS
 	// pass in smu id in request url
 	app.get('/api/savedPlans', function (req, res, next) {
-		Plan.find({ smuId: req.query.smuId })
+		Plan.find({ _id: req.body.id })
 			.then(plans => {
 
 				if(plans == null) {
@@ -156,7 +156,8 @@ module.exports = function (app) {
 			});
 	});
 
-	// takes in user id
+	// takes in user id, use that to find user to get taken array
+	// for gets, param is sent in url, access with req.query.id
 	app.get('/api/genPlan', function(req, res, next) {
 
 		var obj = {  
@@ -171,15 +172,24 @@ module.exports = function (app) {
 		};
 
 		res.send(obj); 
+
+		// Final object to send back
+		var plan = {};
 		
-		// var num = 1; 	
+		// Keeps track of class number
+		var num = 1; 	
 
-		// for(var i=0; i<8; i++) {
-		// 	var temp = []; 	
+		// Goes through each semester
+		for(var i=0; i<8; i++) {
+			
+			// Array of classes for that semester
+			var temp = []; 	
 				
+			// Fifteen hours per semester
+			while(temp.length < 5) {
 
-		// 	while(temp.length < 5) {
-		// 		Course.find({ order: num})
+				// Retrieve next course	
+				Course.find({ order: num})
 		// 			.then(courses => {
 
 		// 				if(courses.length == 1) {
@@ -202,21 +212,13 @@ module.exports = function (app) {
 		// 			});
 
 		// 		num++;
-		// 	}
+			}
 
 
 		//}
 
 
 	});
-
-	
-	// GET PLAN (generate plan given user)
-	//app.get
-	//and then get all classes
-	//get user's taken array
-	//subtract
-	//send diff
 
 
 
