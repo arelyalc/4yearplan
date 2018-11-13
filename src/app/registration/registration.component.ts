@@ -19,13 +19,11 @@ export class RegistrationComponent implements OnInit {
   ngOnInit() {
     this.user = new User();
   }
+
+  // this is used to save a user to the database once they sign up for an account
   public save() {
     console.log(this.user);
     this.signup.add(this.user).subscribe(x => {
-      // this.router.navigateByUrl('home');
     });
-
   }
-
-
 }

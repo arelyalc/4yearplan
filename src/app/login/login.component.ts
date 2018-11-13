@@ -8,25 +8,22 @@ import { SigninService } from '../domain/services/signin.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  public smuId: string;
+  public smuId: number;
   public password: string;
   constructor(private router: Router,
               private sigin: SigninService) { }
 
   ngOnInit() {
-    this.smuId = ' ';
+    this.smuId = 0;
     this.password = ' ';
 
   }
+
+  // this method is used to redirect the user to their dashboard once their credentials are authenticated
   public login() {
     this.sigin.logIn(this.smuId, this.password).subscribe(x => {
       const name = 'user/' + x + '/dashboard';
       this.router.navigateByUrl(name);
-      // console.log(x.studentID);
-      // let idNum = x.id;
-      // let name = 'user/'+ idNum;
-      // console.log(name)
-      // this.router.navigateByUrl(name);
     });
   }
 

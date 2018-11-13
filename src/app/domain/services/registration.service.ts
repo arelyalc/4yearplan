@@ -15,16 +15,14 @@ export class RegistrationService extends RepositoryService<User> {
     super(httpClient);
    }
 
-   public add(item: User): Observable<User>
-   {
-     var obj = {
+   // this method is used for adding a user by hitting the backend endpoint to put it into the database
+   public add(item: User): Observable<User> {
+     const obj = {
        name: item.name,
        email: item.email,
        smuId: item.smuId,
        password: item.password
-     }
-     //const user = item.serialize(obj)
-     //console.log(user)
+     };
      return this.httpClient.post<User>(`${this.endPoint}/register`, item, this.httpOptions).pipe(
       catchError(this.handleException)
     );

@@ -20,24 +20,29 @@ protected httpOptions =
     })
 };
 
+// this method is used for adding
 public add(item: T): Observable<T> {
   return this.httpClient.post<T>(`${this.endPoint}/users`, item, this.httpOptions).pipe(
     catchError(this.handleException)
   );
 }
 
+// this method is used for retrieving a user by id
 getById(id: number): Observable<User> {
   return this.httpClient
   .get<User>(`${this.endPoint}/users/${id}`, this.httpOptions)
   .pipe(catchError(this.handleException));
 }
 
+// this method is used for updating a user's profile information
 update(updatedUser: User): Observable<User> {
   return this.httpClient
   .put<User>(`${this.endPoint}/users/${updatedUser.id}`, updatedUser, this.httpOptions)
   .pipe(catchError(this.handleException));
 }
 
+// this method is used for saving a plan for a certain user
+// given a plan and the user's id
 savePlan(id: string, updatedPlan: Plan): Observable<Plan> {
   const obj = {
     id: id,
@@ -48,12 +53,17 @@ savePlan(id: string, updatedPlan: Plan): Observable<Plan> {
   .pipe(catchError(this.handleException));
 }
 
+// this method is used for getting all of the user's plans
+// given a user id
 getPlans(id: string): Observable<Plan[]> {
   return this.httpClient
   .get<Plan[]>(`${this.endPoint}/savedPlans`, this.httpOptions)
   .pipe(catchError(this.handleException));
 }
 
+// this method is used for sending the taken classes array to backend
+// so that we don't add those classes to the 4-year plan
+// given the taken-classes array and a user id
 sendTaken(id: string, taken: string[]): Observable<Plan[]> {
   const obj = {
     id: id,
@@ -64,15 +74,15 @@ sendTaken(id: string, taken: string[]): Observable<Plan[]> {
    .pipe(catchError(this.handleException));
 }
 
+// this method is used for deleting
 public delete(id: number): Observable<T> {
   return this.httpClient.delete<T>(`${this.endPoint}/${id}`, this.httpOptions).pipe(
     catchError(this.handleException)
   );
 }
 
-// using this route for testing along with db.json
-// remove later
-
+// this method is used for getting a specific plan - used for displaying a plan when they click on it
+// given a user id
 getPlan(id: number): Observable<Plan> {
   return this.httpClient
   .get<Plan>(`${this.endPoint}/4yearplan/?studentID=${id}`, this.httpOptions)
