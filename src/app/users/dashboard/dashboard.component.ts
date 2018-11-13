@@ -65,11 +65,13 @@ export class DashboardComponent implements OnInit {
     // });
   }
 
+  // this is used to track the changes via the generate form
   changed(e) {
     const temp = e.target.value;
     this.selected(temp);
   }
 
+  // this method is used to send the taken array to the backend so that the 4yearplan is generated
   save() {
     console.log(this.taken);
     const id = this.signin.getId();
@@ -77,6 +79,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  // this method is used to save the plan after it is generated
   savePlan() {
     this.plan.name = '4 year plan ' + this.plan.id;
     this.plan.date = new Date();
@@ -87,16 +90,19 @@ export class DashboardComponent implements OnInit {
     alert('successfully saved your plan!! check it out under saved plans tab ~');
   }
 
+  // this methos is used to save the selected values to the taken array
   selected(code: string) {
     this.taken.push(code);
     console.log(this.taken);
   }
 
+  // this method is used to redirect to the profile settings page
   updateProf() {
     const id = this.signin.getId();
     this.router.navigate(['/user', id, 'settings']);
   }
 
+  // this method is used to redirect to the appropriate plan once selected from the saved plans tab
   goPlan(name: string) {
     // get appropriate plan
     // this.plan = ;
