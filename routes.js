@@ -52,8 +52,7 @@ module.exports = function (app) {
 			else {
 				res.status(500).send('Invalid password'); 
 			}
-		}
-		);
+		});
 		// how does passport know what user is 
 		// passport.authenticate('local', function (err, user, info) {
 		// 	var token;
@@ -117,8 +116,9 @@ module.exports = function (app) {
 	// pass in plan json and user id number 
 	app.post('/api/saveCurrentPlan', function(req, res, next) {
 
-		var plan = new Plan(); 
+		var plan = new Plan();
 		plan.name = req.body.name;
+		plan.date = req.body.date; 
 		plan.sem1 = req.body.sem1; 
 		plan.sem2 = req.body.sem2; 
 		plan.sem3 = req.body.sem3; 
@@ -139,7 +139,7 @@ module.exports = function (app) {
 	// GET ALL SAVED PLANS
 	// pass in smu id in request url
 	app.get('/api/savedPlans', function (req, res, next) {
-		Plan.findOne({ smuId: req.query.smuId })
+		Plan.find({ smuId: req.query.smuId })
 			.then(plans => {
 
 				if(plans == null) {
@@ -159,9 +159,18 @@ module.exports = function (app) {
 	// takes in user id
 	app.get('/api/genPlan', function(req, res, next) {
 
-		var obj = {
+		var obj = {  
+			sem1: ["BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH"],
+			sem2: ["BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH"],
+			sem3: ["BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH"],
+			sem4: ["BLAH BLAH","BLAH BLAH","BLAH BLAH","BLAH BLAH","BLAH BLAH"],
+			sem5: ["BLAH BLAH", "BLAH BLAH","BLAH BLAH", "BLAH BLAH","BLAH BLAH"],
+			sem6: ["BLAH BLAH","BLAH BLAH","BLAH BLAH","BLAH BLAH","BLAH BLAH"], 
+			sem7: ["BLAH BLAH","BLAH BLAH","BLAH BLAH","BLAH BLAH","BLAH BLAH"], 
+			sem8: ["BLAH BLAH","BLAH BLAH","BLAH BLAH","BLAH BLAH","BLAH BLAH"]
+		};
 
-		}
+		res.send(obj); 
 		
 		// var num = 1; 	
 

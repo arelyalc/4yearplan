@@ -3,8 +3,9 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 
 var PlanSchema = new mongoose.Schema({
     name: String, 
-    sem1: [String], //each semester is an arr of obj ids
-    sem2: [String], //object ids reference class objects
+    date: Date,
+    sem1: [String], 
+    sem2: [String], 
     sem3: [String],
     sem4: [String],
     sem5: [String],
