@@ -12,7 +12,7 @@ var PlanSchema = new mongoose.Schema({
     sem6: [String],
     sem7: [String],
     sem8: [String],
-    userId: Number //tied to user
+    userId: String //tied to user
     
 });
 
