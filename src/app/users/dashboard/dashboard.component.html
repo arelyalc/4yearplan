@@ -33,22 +33,22 @@
 
     <ul class="nav navWrapper" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" role="tab" href="#fall2017" style="background-color:#FDF2F2; color: black; margin-right: 1em;">My Dashboard</a>
+            <a class="nav-link active" data-toggle="tab" role="tab" href="#dashboard" style="background-color:#FDF2F2; color: black; margin-right: 1em;">My Dashboard</a>
         </li>
         <li></li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" role="tab" href="#spring2018" style=" color: black; background-color:#FDF2E2;">Saved Plans</a>
+            <a class="nav-link" data-toggle="tab" role="tab" href="#plans" style=" color: black; background-color:#FDF2E2;">Saved Plans</a>
         </li>
     </ul>
     <div class="container tab-content" id="Bottom">
-        <div class="tab-pane active" id="fall2017" role="tabpanel" style="background-color:#FDF2F2;" *ngIf=!plan>
+        <div class="tab-pane active" id="dashboard" role="tabpanel" style="background-color:#FDF2F2;" *ngIf=!plan>
             <img id='robot' src="http://s2.smu.edu/~aalcantara/picture/robot.png" alt="robot picture" class="center"/>
             <br>
             <h6 id="fallMsg" style="text-align: center; color: rgb(27, 25, 25);">
                 You have nothing on your <b>dashboard</b> yet :(
             </h6>
         </div>
-        <div class="tab-pane active" id="fall2017" role="tabpanel" style="background-color:#FDF2F2;" *ngIf=plan>
+        <div class="tab-pane active" id="dashboard" role="tabpanel" style="background-color:#FDF2F2;" *ngIf=plan>
             <div class="row">
                 <div class="col-3">
                     <h5 class="year">Year 1</h5>
@@ -110,18 +110,18 @@
             <br>
             <button class="saveBtn btn btn-lg" type="button" style="background-color: purple; color: white;" (click)="savePlan()">Save!</button>
         </div>
-        <div class="tab-pane" id="spring2018" role="tabpanel" style="background-color:#FDF2E2;" *ngIf=!planList>
+        <div class="tab-pane" id="plans" role="tabpanel" style="background-color:#FDF2E2;" *ngIf=!planList>
             <img id='robot' src="http://s2.smu.edu/~aalcantara/picture/robot.png" alt="robot picture" class="center"/>
             <br>
             <h6 id="fallMsg" style="text-align: center; color: rgb(27, 25, 25);">
                 You do not have any <b>previously saved</b> 4-year plans.
             </h6>
         </div>
-        <div class="tab-pane" id="spring2018" role="tabpanel" style="background-color:#FDF2E2;" *ngIf=planList>
+        <div class="tab-pane" id="plans" role="tabpanel" style="background-color:#FDF2E2;" *ngIf=planList>
             <div *ngFor="let plan of planList" class="row">
                 <div class="col-6">
                     <h4 style="text-decoration: underline; font-family: Helvetica; text-align: center;">Plans</h4>
-                    <h5 style="font-family: Helvetica; text-align: center; color: plum;"><a href="">{{plan.name}}</a></h5>
+                    <h5 style="font-family: Helvetica; text-align: center; color: plum;"><a (click)="goPlan()" href="">{{plan.name}}</a></h5>
                 </div>
                 <div class="col-6">
                     <h4 style="text-decoration: underline; font-family: Helvetica; text-align: center;">Generated on</h4>

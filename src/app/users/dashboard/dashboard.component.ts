@@ -96,4 +96,11 @@ export class DashboardComponent implements OnInit {
     const id = this.signin.getId();
     this.router.navigate(['/user', id, 'settings']);
   }
+
+  goPlan(name: string) {
+    // get appropriate plan
+    // this.plan = ;
+    const id = this.signin.getId();
+    this.router.navigate(['/user', id, 'dashboard']);
+  }
 }
