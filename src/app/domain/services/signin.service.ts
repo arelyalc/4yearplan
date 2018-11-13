@@ -28,12 +28,10 @@ export class SigninService extends RepositoryService<User> {
       }).pipe(catchError(this.handleException));
   }
   private setSession(authResult: object) {
-    localStorage.setItem('id', authResult['id']);
-    console.log(localStorage.getItem('id'));
+    localStorage.setItem('id', authResult);
   }
   public getId() {
-  const id = localStorage.getItem('id');
-  console.log(id);
+    const id = localStorage.getItem('id');
     return id;
   }
   public logOut() {

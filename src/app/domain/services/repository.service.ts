@@ -44,6 +44,16 @@ updatePlan(updatedPlan: Plan): Observable<Plan[]> {
   .pipe(catchError(this.handleException));
 }
 
+sendTaken(id: string, taken: string[]): Observable<Plan[]> {
+  const obj = {
+    id: id,
+    taken: taken
+   };
+   return this.httpClient
+   .put<Plan[]>(`${this.endPoint}/prevCredit`, obj, this.httpOptions)
+   .pipe(catchError(this.handleException));
+}
+
 public delete(id: number): Observable<T> {
   return this.httpClient.delete<T>(`${this.endPoint}/${id}`, this.httpOptions).pipe(
     catchError(this.handleException)

@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Class } from 'src/app/models/class';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Plan } from 'src/app/domain/models/plan';
+import { SigninService } from 'src/app/domain/services/signin.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,7 +21,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private plans: RepositoryService<Plan>
+    private plans: RepositoryService<Plan>,
+    private signin: SigninService
   ) { }
 
   ngOnInit() {
@@ -70,6 +72,10 @@ export class DashboardComponent implements OnInit {
 
   save() {
     console.log(this.taken);
+    var id = this.signin.getId();
+    this.plans.sendTaken(id, this.taken).subscribe((plan) => {
+
+    });
   }
 
   savePlan() {
