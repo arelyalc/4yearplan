@@ -141,7 +141,7 @@ module.exports = function (app) {
 	// pass in smu id in request url
 	app.get('/api/savedPlans/:id', function (req, res, next) {
 	
-		Plan.find({ _id: req.params.id })
+		Plan.find({ userId: req.params.id })
 			.then(plans => {
 
 				if(plans == null) {
