@@ -95,8 +95,8 @@ module.exports = function (app) {
 
 				var ucs = uc.split(' '); 
 
-				for(var subuc in ucs) {
-					final.push(subuc); 
+				for(var j=0; j<ucs.length; j++) {
+					final.push(ucs[j]); 
 				}
 			} 
 			else {
