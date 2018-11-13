@@ -38,9 +38,19 @@ update(updatedUser: User): Observable<User> {
   .pipe(catchError(this.handleException));
 }
 
-updatePlan(updatedPlan: Plan): Observable<Plan[]> {
+savePlan(id: string, updatedPlan: Plan): Observable<Plan> {
+  const obj = {
+    id: id,
+    plan: updatedPlan
+  };
   return this.httpClient
-  .put<Plan[]>(`${this.endPoint}/4yearplan/${updatedPlan.id}`, updatedPlan, this.httpOptions)
+  .post<Plan>(`${this.endPoint}/saveCurrentPlan`, obj, this.httpOptions)
+  .pipe(catchError(this.handleException));
+}
+
+getPlans(id: string): Observable<Plan[]> {
+  return this.httpClient
+  .get<Plan[]>(`${this.endPoint}/savedPlans`, this.httpOptions)
   .pipe(catchError(this.handleException));
 }
 
@@ -62,11 +72,6 @@ public delete(id: number): Observable<T> {
 
 // using this route for testing along with db.json
 // remove later
-getPlans(id: number): Observable<Plan[]> {
-  return this.httpClient
-  .get<Plan[]>(`${this.endPoint}/4yearplan/?studentID=${id}`, this.httpOptions)
-  .pipe(catchError(this.handleException));
-}
 
 getPlan(id: number): Observable<Plan> {
   return this.httpClient

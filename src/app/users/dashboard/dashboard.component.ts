@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
   taken: string[] = [];
   options: Class[];
   plan: Plan;
-  planList: Plan[] = [];
+  planList: Plan[];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -59,9 +59,9 @@ export class DashboardComponent implements OnInit {
       { code: 'QF', name: 'Statistics'},
       { code: 'None', name: 'World History'}
     ];
-    // this.plans.getPlan(49490909).subscribe((plan) => {
+    console.log(this.planList);
+    // this.plans.getPlans(this.signin.getId()).subscribe((plan) => {
     //   this.planList = plan;
-    //   this.plan = plan[0];
     // });
   }
 
@@ -72,16 +72,16 @@ export class DashboardComponent implements OnInit {
 
   save() {
     console.log(this.taken);
-    var id = this.signin.getId();
+    const id = this.signin.getId();
     this.plans.sendTaken(id, this.taken).subscribe((plan) => {
-
     });
   }
 
   savePlan() {
     this.plan.name = '4 year plan ' + this.plan.id;
     this.plan.date = new Date();
-    this.plans.updatePlan(this.plan).subscribe((plan) => {
+    const id = this.signin.getId();
+    this.plans.savePlan(id, this.plan).subscribe((plan) => {
     });
     this.planList.push(this.plan);
     alert('successfully saved your plan!! check it out under saved plans tab ~');
@@ -90,5 +90,10 @@ export class DashboardComponent implements OnInit {
   selected(code: string) {
     this.taken.push(code);
     console.log(this.taken);
+  }
+
+  updateProf() {
+    const id = this.signin.getId();
+    this.router.navigate(['/user', id, 'settings']);
   }
 }
