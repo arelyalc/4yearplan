@@ -117,18 +117,17 @@ module.exports = function (app) {
 	app.post('/api/saveCurrentPlan', function(req, res, next) {
 
 		var plan = new Plan();
-		plan = req.body.plan; 
-		// plan.name = req.body.plan.name;
-		// plan.date = req.body.plan.date; 
-		// plan.sem1 = req.body.plan.sem1; 
-		// plan.sem2 = req.body.plan.sem2; 
-		// plan.sem3 = req.body.plan.sem3; 
-		// plan.sem4 = req.body.plan.sem4; 
-		// plan.sem5 = req.body.plan.sem5; 
-		// plan.sem6 = req.body.plan.sem6; 
-		// plan.sem7 = req.body.plan.sem7; 
-		// plan.sem8 = req.body.plan.sem8; 
-		// plan.userId = req.body.userId;
+		plan.name = req.body.plan.name;
+		plan.date = req.body.plan.date; 
+		plan.sem1 = req.body.plan.sem1; 
+		plan.sem2 = req.body.plan.sem2; 
+		plan.sem3 = req.body.plan.sem3; 
+		plan.sem4 = req.body.plan.sem4; 
+		plan.sem5 = req.body.plan.sem5; 
+		plan.sem6 = req.body.plan.sem6; 
+		plan.sem7 = req.body.plan.sem7; 
+		plan.sem8 = req.body.plan.sem8; 
+		plan.userId = req.body.userId;
 
 		plan.save(function (err, plan) {
 			if (err) return console.error(err);
