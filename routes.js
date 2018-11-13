@@ -131,7 +131,7 @@ module.exports = function (app) {
 
 		plan.save(function (err, plan) {
 			if (err) {
-				handleError(err);
+				res.status(400).json(err);
 			} 
 			else {
 				res.status(200).json(plan); 
