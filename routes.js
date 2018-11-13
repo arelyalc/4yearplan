@@ -130,8 +130,14 @@ module.exports = function (app) {
 		plan.userId = req.body.userId;
 
 		plan.save(function (err, plan) {
-			if (err) return console.error(err);
-			res.status(200).json(plan); 
+			if (err) {
+				handleError(err);
+			} 
+			else {
+				res.status(200).json(plan); 
+			}
+
+			
 		});		
 	})
 
