@@ -24,33 +24,33 @@ module.exports = function (app) {
 	// takes in name email smu id and password
 	app.post('/api/register', function (req, res, next) {
 
-		var user = new User(); 
+		var user = new User();
 		user.name = req.body.name;
 		user.smuId = req.body.smuId;
 		user.email = req.body.email;
-		user.password = req.body.password; 
+		user.password = req.body.password;
 
 		//user.setPassword(req.body.password);
 
 		user.save(function (err, user) {
 			if (err) return console.error(err);
-			res.status(200).json(user); 
+			res.status(200).json(user);
 		});
 	});
 	// LOGIN
 	// takes in smu id and password
 	app.post('/api/login', function (req, res, next) {
-		
-		User.findOne({ smuId: req.body.smuId }, function(err, user){
+
+		User.findOne({ smuId: req.body.smuId }, function (err, user) {
 			if (err) {
-				res.status(404).send(err); 
+				res.status(404).send(err);
 				//throw err; 
 			}
 			if (req.body.password.trim() == user.password.trim()) {
-				res.status(200).send(user._id); 
-			} 
+				res.status(200).send(user._id);
+			}
 			else {
-				res.status(500).send('Invalid password'); 
+				res.status(500).send('Invalid password');
 			}
 		});
 		// how does passport know what user is 
@@ -84,28 +84,28 @@ module.exports = function (app) {
 	app.put('/api/prevCredit', function (req, res, next) {
 
 		var temp = req.body.taken;
-		var final = []; 
+		var final = [];
 
-		for(var i=0; i<temp.length; i++) {
+		for (var i = 0; i < temp.length; i++) {
 
-			uc = temp[i]; 
+			uc = temp[i];
 
-			if(uc.indexOf(' ') >= 0) {
+			if (uc.indexOf(' ') >= 0) {
 
-				var ucs = uc.split(' '); 
+				var ucs = uc.split(' ');
 
-				for(var j=0; j<ucs.length; j++) {
-					final.push(ucs[j]); 
+				for (var j = 0; j < ucs.length; j++) {
+					final.push(ucs[j]);
 				}
-			} 
+			}
 			else {
-				final.push(uc); 				
+				final.push(uc);
 			}
 
 		}
-		
+
 		var myquery = { _id: req.body.id };
-		var newvalues = { $set: { taken: final} };
+		var newvalues = { $set: { taken: final } };
 		User.updateOne(myquery, newvalues, function (err, info) {
 			//if (err) throw err;
 			res.status(200).json('Previous credit added to user');  //CHECK THIS FUNCTION CALL
@@ -114,46 +114,46 @@ module.exports = function (app) {
 
 	// POST PLAN (save with userID)
 	// pass in plan json and user id number 
-	app.post('/api/saveCurrentPlan', function(req, res, next) {
+	app.post('/api/saveCurrentPlan', function (req, res, next) {
 
 		var plan = new Plan();
 		plan.name = req.body.plan.name;
-		plan.date = req.body.plan.date; 
-		plan.sem1 = req.body.plan.sem1; 
-		plan.sem2 = req.body.plan.sem2; 
-		plan.sem3 = req.body.plan.sem3; 
-		plan.sem4 = req.body.plan.sem4; 
-		plan.sem5 = req.body.plan.sem5; 
-		plan.sem6 = req.body.plan.sem6; 
-		plan.sem7 = req.body.plan.sem7; 
-		plan.sem8 = req.body.plan.sem8; 
+		plan.date = req.body.plan.date;
+		plan.sem1 = req.body.plan.sem1;
+		plan.sem2 = req.body.plan.sem2;
+		plan.sem3 = req.body.plan.sem3;
+		plan.sem4 = req.body.plan.sem4;
+		plan.sem5 = req.body.plan.sem5;
+		plan.sem6 = req.body.plan.sem6;
+		plan.sem7 = req.body.plan.sem7;
+		plan.sem8 = req.body.plan.sem8;
 		plan.userId = req.body.userId;
 
 		plan.save(function (err, plan) {
 			if (err) {
 				res.status(400).json(err);
-			} 
+			}
 			else {
-				res.status(200).json(plan); 
+				res.status(200).json(plan);
 			}
 
-			
-		});		
+
+		});
 	})
 
 
 	// GET ALL SAVED PLANS
 	// pass in smu id in request url
 	app.get('/api/savedPlans/:id', function (req, res, next) {
-	
+
 		Plan.find({ userId: req.params.id })
 			.then(plans => {
 
-				if(plans == null) {
-					res.send('No saved plans'); 
+				if (plans == null) {
+					res.send('No saved plans');
 				}
 				else {
-					res.send(plans); 
+					res.send(plans);
 				}
 			}).catch(err => {
 
@@ -165,60 +165,90 @@ module.exports = function (app) {
 
 	// takes in user id, use that to find user to get taken array
 	// for gets, param is sent in url, access with req.query.id
-	app.get('/api/genPlan/:id', function(req, res, next) {
+	app.get('/api/genPlan/:id', function (req, res, next) {
 
-		var obj = {  
+		var obj = {
 			sem1: ["BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH"],
 			sem2: ["BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH"],
 			sem3: ["BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH"],
-			sem4: ["BLAH BLAH","BLAH BLAH","BLAH BLAH","BLAH BLAH","BLAH BLAH"],
-			sem5: ["BLAH BLAH", "BLAH BLAH","BLAH BLAH", "BLAH BLAH","BLAH BLAH"],
-			sem6: ["BLAH BLAH","BLAH BLAH","BLAH BLAH","BLAH BLAH","BLAH BLAH"], 
-			sem7: ["BLAH BLAH","BLAH BLAH","BLAH BLAH","BLAH BLAH","BLAH BLAH"], 
-			sem8: ["BLAH BLAH","BLAH BLAH","BLAH BLAH","BLAH BLAH","BLAH BLAH"]
+			sem4: ["BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH"],
+			sem5: ["BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH"],
+			sem6: ["BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH"],
+			sem7: ["BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH"],
+			sem8: ["BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH"]
 		};
 
-		res.send(obj); 
+		res.send(obj);
+
+
+
+		// Get taken array for this user and save to local variable userTaken
+		var userTaken = [];
+
+		User.find({ _id: req.params.id })
+			.then(taken => {
+				userTaken = taken;
+			}).catch(err => {
+				res.status(500).send({
+					message: err.message || "Some error occurred while retrieving user plans"
+				});
+			});
+
+
 
 		// Final object to send back
 		var plan = {};
-		
+
 		// Keeps track of class number
-		var num = 1; 	
+		var num = 1;
 
 		// Goes through each semester
-		for(var i=0; i<8; i++) {
-			
+		for (var i = 0; i < 8; i++) {
+
 			// Array of classes for that semester
-			var temp = []; 	
-				
+			//this['sem' + i] = [];
+			var temp = [];
+
 			// Fifteen hours per semester
-			while(temp.length < 5) {
+			while (temp.length < 5) {
 
-				// Retrieve next course	
-				Course.find({ order: num})
-		// 			.then(courses => {
+				// Retrieve next course	or courses
+				Course.find({ order: num })
+					.then(courses => {
 
-		// 				if(courses.length == 1) {
-		// 					//make taken into a hash set
-							
-		// 					// UC = courses.UC
-		// 					// for each string in UC
-		// 					// 	if taken.contains UC
-		// 					//		break (I don't want to add this course to this semester)
+						// If only one recommendation for this position
+						if (courses.length == 1) {
 
-		// 					temp.push(courses.course_id); 
-		// 				}
+							// Get array of requirements satisfied by this class
+							UC = courses.UC;
+
+							// Determine if this class needs to be taken 
+
+							var takeClass = true; 
+
+							for (var uc in UC) {
+
+								if(userTaken.includes(uc)) {
+									takeClass = false; 
+								}
+							}
+
+							if(takeClass == true) {
+								temp.push(courses.id); 
+								num++; 
+							}
+						}
 
 
-		// 			}).catch(err => {
 
-		// 				res.status(500).send({
-		// 					message: err.message || "Some error occurred while retrieving user plans"
-		// 				});
-		// 			});
+					}).catch(err => {
 
-		// 		num++;
+						// 				res.status(500).send({
+						// 					message: err.message || "Some error occurred while retrieving user plans"
+						// 				});
+					});
+
+				// 		num++;
 			}
 
 
