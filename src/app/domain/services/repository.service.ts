@@ -43,11 +43,12 @@ update(updatedUser: User): Observable<User> {
 
 // this method is used for saving a plan for a certain user
 // given a plan and the user's id
-saveCurrentPlan(id: string, updatedPlan: Plan): Observable<Plan> {
+saveCurrentPlan(userId: string, plan: Plan): Observable<Plan> {
   const obj = {
-    userId: id,
-    plan: updatedPlan
+    plan: plan,
+    userId: userId
   };
+  console.log(obj);
   return this.httpClient
   .post<Plan>(`${this.endPoint}/saveCurrentPlan`, obj, this.httpOptions)
   .pipe(catchError(this.handleException));

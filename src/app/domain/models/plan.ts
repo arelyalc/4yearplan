@@ -17,7 +17,8 @@ export class Plan implements Serializable<Plan> {
 
     deserialize(input: object): Plan {
         const plan = new Plan();
-        plan.userId = input['userId'];
+        plan.name = input['name'];
+        plan.date = input['date'];
         plan.sem1 = input['sem1'];
         plan.sem2 = input['sem2'];
         plan.sem3 = input['sem3'];
