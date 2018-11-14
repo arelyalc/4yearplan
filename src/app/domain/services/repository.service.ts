@@ -43,9 +43,9 @@ update(updatedUser: User): Observable<User> {
 
 // this method is used for saving a plan for a certain user
 // given a plan and the user's id
-savePlan(id: string, updatedPlan: Plan): Observable<Plan> {
+saveCurrentPlan(id: string, updatedPlan: Plan): Observable<Plan> {
   const obj = {
-    id: id,
+    userId: id,
     plan: updatedPlan
   };
   return this.httpClient
@@ -56,8 +56,9 @@ savePlan(id: string, updatedPlan: Plan): Observable<Plan> {
 // this method is used for getting all of the user's plans
 // given a user id
 getPlans(id: string): Observable<Plan[]> {
+  console.log(id);
   return this.httpClient
-  .get<Plan[]>(`${this.endPoint}/savedPlans`, this.httpOptions)
+  .get<Plan[]>(`${this.endPoint}/savedPlans/${id}`, this.httpOptions)
   .pipe(catchError(this.handleException));
 }
 
@@ -81,11 +82,11 @@ public delete(id: number): Observable<T> {
   );
 }
 
-// this method is used for getting a specific plan - used for displaying a plan when they click on it
+// this method is used for generating a specific plan - used for displaying a plan when they click on it
 // given a user id
-getPlan(id: number): Observable<Plan> {
+genPlan(id: string): Observable<Plan> {
   return this.httpClient
-  .get<Plan>(`${this.endPoint}/4yearplan/?studentID=${id}`, this.httpOptions)
+  .get<Plan>(`${this.endPoint}/genPlan/${id}`, this.httpOptions)
   .pipe(catchError(this.handleException));
 }
 

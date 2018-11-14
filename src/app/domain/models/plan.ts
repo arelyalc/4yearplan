@@ -1,10 +1,9 @@
 import { Serializable } from './../interfaces/serializable';
 
 export class Plan implements Serializable<Plan> {
-    id?: number;
     name?: string;
     date?: Date;
-    studentID?: number;
+    userId?: string;
     sem1: string[];
     sem2: string[];
     sem3: string[];
@@ -18,8 +17,7 @@ export class Plan implements Serializable<Plan> {
 
     deserialize(input: object): Plan {
         const plan = new Plan();
-        plan.id = input['id'];
-        plan.studentID = input['studentID'];
+        plan.userId = input['userId'];
         plan.sem1 = input['sem1'];
         plan.sem2 = input['sem2'];
         plan.sem3 = input['sem3'];
