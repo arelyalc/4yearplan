@@ -64,6 +64,7 @@ export class DashboardComponent implements OnInit {
       { code: 'QF', name: 'Statistics' },
       { code: 'None', name: 'World History' }
     ];
+
     this.plans.getPlans(this.signin.getId()).subscribe((plan) => {
       this.planList = plan;
     });
