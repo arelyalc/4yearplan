@@ -12,7 +12,7 @@ export class Plan implements Serializable<Plan> {
     sem6: string[];
     sem7: string[];
     sem8: string[];
-    altCourses: string[];
+    altCourses?: string[];
 
     constructor() {}
 
