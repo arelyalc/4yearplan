@@ -213,9 +213,9 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/user', id, 'dashboard']);
   }
 
-  //this function will log out a user
-  logout(){
-    this.signin.logOut()
+  // this function will log out a user
+  logout() {
+    this.signin.logOut();
     this.router.navigateByUrl('home');
   }
 }
