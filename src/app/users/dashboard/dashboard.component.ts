@@ -93,6 +93,8 @@ export class DashboardComponent implements OnInit {
 
   genPlan() {
     this.plan = new Plan();
+    this.plan.altCourses = [];
+    console.log(this.taken);
 
     // get all courses in array of objects from backend
     this.courses.getCourses().subscribe((courses) => {
@@ -134,23 +136,32 @@ export class DashboardComponent implements OnInit {
 
           // get array of requirements satisfied by this class
           const UC = currCourse.UC;
+          console.log(currCourse.id + ' satisfies ' + UC);
 
           let takeClass = true;
 
-          for (const uc in UC) {
+          // tslint:disable-next-line:forin
+          for (let j = 0; j < UC.length; j++) {
 
-            if (this.taken.includes(uc)) {
+            if (this.taken.includes(UC[j])) {
+              console.log('UC already satisfied, class not added');
               takeClass = false;
+              orderIdx++;
             }
           } // end uc for loop
 
-          // add to plan if it's a needed UC and not a duplicate order # (aka alt option)
-          // to cycle through alt options, will think through logic later- will probably
+          // add to plan if it's a needed UC
+          // TODO: cycle through alt options, will think through logic later- will probably
           // need a random number generator and modulus operator
-          if (takeClass === true && currCourse.order === orderIdx) {
-            temp.push(currCourse.id);
-            console.log(currCourse.id + ' added');
-            orderIdx++;
+          if (takeClass === true) {
+            // if this is not an alternative option (first of its order in array)
+            if (currCourse.order === orderIdx) {
+              temp.push(currCourse.id);
+              console.log(currCourse.id + ' added');
+              orderIdx++;
+            } else {
+              this.plan.altCourses.push(currCourse.id);
+            }
           }
 
           // increment position in allClasses array
@@ -160,8 +171,6 @@ export class DashboardComponent implements OnInit {
         this.plan['sem' + (i + 1)] = temp;
 
       } // end semester for loop aka plan generated
-
-      this.plan.altCourses = ["BLAH", "BLAH", "BLAH", "BLAH", "BLAH", "BLAH"];
 
     });
   }
