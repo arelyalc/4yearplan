@@ -12,6 +12,7 @@ export class Plan implements Serializable<Plan> {
     sem6: string[];
     sem7: string[];
     sem8: string[];
+    altCourses: string[];
 
     constructor() {}
 
@@ -27,6 +28,7 @@ export class Plan implements Serializable<Plan> {
         plan.sem6 = input['sem6'];
         plan.sem7 = input['sem7'];
         plan.sem8 = input['sem8'];
+        plan.altCourses = input['alrCourses'];
         return plan;
     }
     serialize(obj: object): string {

@@ -159,6 +159,9 @@ export class DashboardComponent implements OnInit {
         this.plan['sem' + (i + 1)] = temp;
 
       } // end semester for loop aka plan generated
+
+      this.plan.altCourses = ["BLAH", "BLAH", "BLAH", "BLAH", "BLAH", "BLAH"];
+
     });
   }
 

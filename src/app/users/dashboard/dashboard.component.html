@@ -23,9 +23,11 @@
         <div class="card float-right" style="width: 16rem;">
             <img class="card-img-top" src="http://s2.smu.edu/~aalcantara/picture/smu.jpg" alt="Card image cap - SMU campus">
             <div class="card-body">
-                <h4 class="card-title">Course Catalog</h4>
+                <h4 class="card-title">Alternative Courses</h4>
+                <p *ngFor="let class of plan.altCourses">{{class}}</p>
+                <!-- <h4 class="card-title">Course Catalog</h4>
                 <p class="card-text">Click below to view the full undergraduate course catalog.</p>
-                <a href="https://www.smu.edu/~/media/Site/catalog/PDF/UGrad/2014/2014_SMU_UGcatalog_LyleSchoolSection.ashx" target="_blank" class="btn btn-block btn-primary">View Catalog</a>
+                <a href="https://www.smu.edu/~/media/Site/catalog/PDF/UGrad/2014/2014_SMU_UGcatalog_LyleSchoolSection.ashx" target="_blank" class="btn btn-block btn-primary">View Catalog</a> -->
             </div>
         </div>
         <h1 id="title">4-year generator <button type="button" class="btn btn-success float-right button-wrapper" data-toggle="modal" data-target="#ClassModal"> Generator</button></h1>
