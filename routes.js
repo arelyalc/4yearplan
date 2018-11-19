@@ -147,28 +147,7 @@ module.exports = function (app) {
 
 		console.log("HIT PREV CREDIT ROUTE"); 
 
-		var temp = req.body.taken;
-		var final = [];
-
-		for (var i = 0; i < temp.length; i++) {
-
-			uc = temp[i];
-
-			if (uc.indexOf(' ') >= 0) {
-
-				var ucs = uc.split(' ');
-
-				for (var j = 0; j < ucs.length; j++) {
-					final.push(ucs[j]);
-				}
-			}
-			else {
-				final.push(uc);
-			}
-
-		}
-
-		var myquery = { _id: req.body.id };
+		var myquery = { _id: req.body.taken };
 		var newvalues = { $set: { taken: final } };
 		User.updateOne(myquery, newvalues, function (err, info) {
 			//if (err) throw err;
