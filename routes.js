@@ -9,6 +9,8 @@ const Plan = mongoose.model('Plan');
 const Course = mongoose.model('Course');
 const db = require('./db');
 
+mongoose.set('debug', true);
+
 // const fs = require('fs'); 
 // var rawData = fs.readFileSync('courses.json');
 // var courses = JSON.parse(rawData); 
@@ -47,6 +49,7 @@ module.exports = function (app) {
 				//throw err; 
 			}
 			if (req.body.password.trim() == user.password.trim()) {
+				//console.log(user); 
 				res.status(200).send(user._id);
 			}
 			else {
@@ -82,6 +85,8 @@ module.exports = function (app) {
 	// SAVE PREVIOUS CREDIT
 	// pass in smuId and taken (array of class code strings)
 	app.put('/api/prevCredit', function (req, res, next) {
+
+		console.log("HIT PREV CREDIT ROUTE"); 
 
 		var temp = req.body.taken;
 		var final = [];
@@ -163,107 +168,14 @@ module.exports = function (app) {
 			});
 	});
 
-	// takes in user id, use that to find user to get taken array
-	// for gets, param is sent in url, access with req.query.id
-	app.get('/api/genPlan/:id', function (req, res, next) {
+	app.get('/api/courses', function(req, res, next) {
 
-		var obj = {
-			sem1: ["BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH"],
-			sem2: ["BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH"],
-			sem3: ["BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH"],
-			sem4: ["BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH"],
-			sem5: ["BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH"],
-			sem6: ["BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH"],
-			sem7: ["BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH"],
-			sem8: ["BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH", "BLAH BLAH"]
-		};
-
-		res.send(obj);
-
-
-
-		// Get taken array for this user and save to local variable userTaken
-		var userTaken = [];
-
-		User.find({ _id: req.params.id })
-			.then(taken => {
-				userTaken = taken;
-			}).catch(err => {
-				res.status(500).send({
-					message: err.message || "Some error occurred while retrieving user plans"
-				});
+		Course.find().then(courses => {
+			res.send(courses); 
+		}).catch(err => {
+			res.status(500).send({
+				message: err.message || "Some error occurred while retrieving courses"
 			});
-
-
-
-		// Final object to send back
-		var plan = {};
-
-		// Keeps track of class number
-		var num = 1;
-
-		// Goes through each semester
-		for (var i = 0; i < 8; i++) {
-
-			// Array of classes for that semester
-			//this['sem' + i] = [];
-			var temp = [];
-
-			// Fifteen hours per semester
-			while (temp.length < 5) {
-
-				// Retrieve next course	or courses
-				Course.find({ order: num })
-					.then(courses => {
-
-						// If only one recommendation for this position
-						if (courses.length == 1) {
-
-							// Get array of requirements satisfied by this class
-							UC = courses.UC;
-
-							// Determine if this class needs to be taken 
-
-							var takeClass = true; 
-
-							for (var uc in UC) {
-
-								if(userTaken.includes(uc)) {
-									takeClass = false; 
-								}
-							}
-
-							if(takeClass == true) {
-								temp.push(courses.id); 
-								num++; 
-							}
-						}
-
-
-
-					}).catch(err => {
-
-						// 				res.status(500).send({
-						// 					message: err.message || "Some error occurred while retrieving user plans"
-						// 				});
-					});
-
-				// 		num++;
-			}
-
-
-		}
-
-
+		});
 	});
-
-
-
-
-	// frontend routes =========================================================
-	// route to handle all angular requests
-	app.get('/', function (req, res) {
-		res.sendFile('./public/index.html');
-	});
-
 }
