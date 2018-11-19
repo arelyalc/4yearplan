@@ -86,18 +86,18 @@ module.exports = function (app) {
 	});
 
 	// CHANGE PASSWORD
-	app.put('/api/password', function (req, res, next) {
+	// app.put('/api/password', function (req, res, next) {
 		
-		console.log("HIT CHANGE PASSWORD ROUTE"); 
+	// 	console.log("HIT CHANGE PASSWORD ROUTE"); 
 
-		var myquery = { _id: req.body.id };
-		var newvalues = { $set: { password: req.body.password } };
-		User.updateOne(myquery, newvalues, function (err, info) {
-			if (err) throw err;
-			res.status(200).json('Password updated');  
-		});
+	// 	var myquery = { _id: req.body.id };
+	// 	var newvalues = { $set: { password: req.body.password } };
+	// 	User.updateOne(myquery, newvalues, function (err, info) {
+	// 		if (err) throw err;
+	// 		res.status(200).json('Password updated');  
+	// 	});
 
-	});
+	// });
 
 
 	// UPDATE PROFILE INFO
@@ -109,13 +109,36 @@ module.exports = function (app) {
 		var myquery = { _id: req.params.id };
 		var newvalues = { $set: { name: req.body.name,
 								  email: req.body.email,
-								  smuId: req.body.smuId } };
+								  smuId: req.body.smuId,
+								  password: req.body.password } };
 		User.updateOne(myquery, newvalues, function (err, info) {
 			if (err) throw err;
 			res.status(200).json('Profile updated');  
 		});
 
-	})
+	});
+
+	app.get('/api/user/:id', function(req, res, next) {
+		
+		console.log("HIT GET BY ID USER ROUTE"); 
+
+		User.findOne({ _id: req.params.id }, function (err, user) {
+			if (err) {
+				res.status(404).send(err);
+				//throw err; 
+			}
+			else if(user == null) {
+
+				res.status(404).json("No user found");
+			}
+			else {
+				
+				res.status(200).send(user); 
+			}
+		});
+
+		
+	});
 
 
 	// SAVE PREVIOUS CREDIT
