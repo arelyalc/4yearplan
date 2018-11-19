@@ -12,6 +12,7 @@ var PlanSchema = new mongoose.Schema({
     sem6: [String],
     sem7: [String],
     sem8: [String],
+    altCourses: [String],
     userId: String //tied to user
     
 });

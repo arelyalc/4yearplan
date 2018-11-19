@@ -191,6 +191,7 @@ module.exports = function (app) {
 		plan.sem6 = req.body.plan.sem6;
 		plan.sem7 = req.body.plan.sem7;
 		plan.sem8 = req.body.plan.sem8;
+		plan.altCourses = req.body.plan.altCourses;
 		plan.userId = req.body.userId;
 
 		plan.save(function (err, plan) {
