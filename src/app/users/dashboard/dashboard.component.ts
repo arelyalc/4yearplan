@@ -86,6 +86,28 @@ export class DashboardComponent implements OnInit {
   save() {
 
     const id = this.signin.getId();
+
+    var newTaken = []; 
+
+    for(var i=0; i<this.taken.length; i++) {
+        var uc = this.taken[i]; 
+
+        if(uc.indexOf(' ') >= 0) {
+
+          var ucs = uc.split(' '); 
+
+          for(var j=0; j<ucs.length; j++) {
+            newTaken.push(ucs[j]); 
+          }
+        } else {
+          newTaken.push(uc);
+        }
+    }
+
+    this.taken = newTaken; 
+    console.log(this.taken + ' UCS SPLIT'); 
+
+
     this.plans.sendTaken(id, this.taken).subscribe((plan) => {
       console.log('Prev credit saved');
     }); 
