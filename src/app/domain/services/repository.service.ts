@@ -27,11 +27,11 @@ public add(item: T): Observable<T> {
 }
 
 // this method is used for retrieving a user by id
-getById(id: number): Observable<User> {
-  return this.httpClient
-  .get<User>(`${this.endPoint}/users/${id}`, this.httpOptions)
-  .pipe(catchError(this.handleException));
-}
+// getById(id: number): Observable<User> {
+//   return this.httpClient
+//   .get<User>(`${this.endPoint}/users/${id}`, this.httpOptions)
+//   .pipe(catchError(this.handleException));
+// }
 
 // this method is used for updating a user's profile information
 update(updatedUser: User): Observable<User> {

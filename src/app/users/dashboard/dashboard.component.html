@@ -12,7 +12,8 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" (click)="updateProf()">Update Profile</a>
                     <a class="dropdown-item" href="#">Change Password</a>
-                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Course Catalog</a>
+                    <div class="dropdown-divider"  href="https://www.smu.edu/~/media/Site/catalog/PDF/UGrad/2014/2014_SMU_UGcatalog_LyleSchoolSection.ashx"></div>
                     <a class="dropdown-item" (click)='logout()'>Log out</a>
                 </div>
             </li>
@@ -20,14 +21,20 @@
     </nav>
     <br>
     <div>
-        <div class="card float-right" style="width: 16rem;" *ngIf="plan.altCourses">
+        <!-- This either display the catlog or the different courses a person can possibly take -->
+        <div class="card float-right" style="width: 16rem;" *ngIf="!plan">
+            <img class="card-img-top" src="http://s2.smu.edu/~aalcantara/picture/smu.jpg" alt="Card image cap - SMU campus">
+            <div class="card-body">
+                <h4 class="card-title">Course Catalog</h4>
+                <p class="card-text">Click below to view the full undergraduate course catalog.</p>
+                <a href="https://www.smu.edu/~/media/Site/catalog/PDF/UGrad/2014/2014_SMU_UGcatalog_LyleSchoolSection.ashx" target="_blank" class="btn btn-block btn-primary">View Catalog</a>
+            </div>
+        </div>
+        <div class="card float-right" style="width: 16rem;" *ngIf="plan">
             <img class="card-img-top" src="http://s2.smu.edu/~aalcantara/picture/smu.jpg" alt="Card image cap - SMU campus">
             <div class="card-body">
                 <h4 class="card-title">Alternative Courses</h4>
                 <p *ngFor="let class of plan.altCourses">{{class}}</p>
-                <!-- <h4 class="card-title">Course Catalog</h4>
-                <p class="card-text">Click below to view the full undergraduate course catalog.</p>
-                <a href="https://www.smu.edu/~/media/Site/catalog/PDF/UGrad/2014/2014_SMU_UGcatalog_LyleSchoolSection.ashx" target="_blank" class="btn btn-block btn-primary">View Catalog</a> -->
             </div>
         </div>
         <h1 id="title">4-year generator <button type="button" class="btn btn-success float-right button-wrapper" data-toggle="modal" data-target="#ClassModal"> Generator</button></h1>
@@ -112,31 +119,31 @@
             <br>
             <button class="saveBtn btn btn-lg" type="button" style="background-color: purple; color: white;" data-toggle="modal" data-target="#NameModal">Save!</button>
         </div>
-        <div class="tab-pane" id="plans" role="tabpanel" style="background-color:#FDF2E2;" *ngIf=!planList>
-            <img id='robot' src="http://s2.smu.edu/~aalcantara/picture/robot.png" alt="robot picture" class="center"/>
-            <br>
-            <h6 id="fallMsg" style="text-align: center; color: rgb(27, 25, 25);">
-                You do not have any <b>previously saved</b> 4-year plans.
-            </h6>
-        </div>
-        <div class="tab-pane" id="plans" role="tabpanel" style="background-color:#FDF2E2;" *ngIf=planList>
-            <div class="row">
-                <div class="col-6">
-                    <h4 style="text-decoration: underline; font-family: Helvetica; text-align: center;">Plans</h4>
+            <div class="tab-pane" id="plans" role="tabpanel" style="background-color:#FDF2E2;" *ngIf=!planList>
+                <img id='robot' src="http://s2.smu.edu/~aalcantara/picture/robot.png" alt="robot picture" class="center"/>
+                <br>
+                <h6 id="fallMsg" style="text-align: center; color: rgb(27, 25, 25);">
+                    You do not have any <b>previously saved</b> 4-year plans.
+                </h6>
+            </div>
+            <div class="tab-pane" id="plans" role="tabpanel" style="background-color:#FDF2E2;" *ngIf="planList && !plan">
+                <div class="row">
+                    <div class="col-6">
+                        <h4 style="text-decoration: underline; font-family: Helvetica; text-align: center;">Plans</h4>
+                    </div>
+                    <div class="col-6">
+                        <h4 style="text-decoration: underline; font-family: Helvetica; text-align: center;">Generated on</h4>
+                    </div>
                 </div>
-                <div class="col-6">
-                    <h4 style="text-decoration: underline; font-family: Helvetica; text-align: center;">Generated on</h4>
+                <div *ngFor="let plan of planList" class="row">
+                    <div class="col-6">
+                        <h5 style="font-family: Helvetica; text-align: center; color: plum;"><a (click)="goPlan(plan.name)">{{plan.name}}</a></h5>
+                    </div>
+                    <div class="col-6">
+                        <h5 style="font-family: Helvetica; text-align: center; color: gray;">{{plan.date | date:'longDate'}}</h5>
+                    </div>
                 </div>
             </div>
-            <div *ngFor="let plan of planList" class="row">
-                <div class="col-6">
-                    <h5 style="font-family: Helvetica; text-align: center; color: plum;"><a (click)="goPlan()" href="">{{plan.name}}</a></h5>
-                </div>
-                <div class="col-6">
-                    <h5 style="font-family: Helvetica; text-align: center; color: gray;">{{plan.date | date:'longDate'}}</h5>
-                </div>
-            </div>
-        </div>
         <br>
     </div>
     <div class="ClassModal">

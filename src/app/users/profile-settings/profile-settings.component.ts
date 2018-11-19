@@ -18,7 +18,13 @@ export class ProfileSettingsComponent implements OnInit {
 
   ngOnInit() {
     this.user = new User();
-    this.user.id = this.users.getId();
+    //this.user.id = this.users.getId();
+    //console.log(this.user.id)
+    this.users.getById(this.users.getId()).subscribe((userBack)=>{
+      this.user = (userBack)
+      console.log(this.user)
+    });
+    console.log(this.user)
     
   }
 
@@ -26,7 +32,8 @@ export class ProfileSettingsComponent implements OnInit {
   updateName(event) {
     const name = event.target.value;
     this.user.name = name;
-    this.users.updateInformation(this.user, Number(this.user.id)).subscribe((account) => {
+    //console.log(this.user.id)
+    this.users.updateInformation(this.user, this.users.getId()).subscribe((account) => {
       console.log(this.user);
     });
   }
@@ -35,7 +42,7 @@ export class ProfileSettingsComponent implements OnInit {
   updateEmail(event) {
     const email = event.target.value;
     this.user.email = email;
-    this.users.updateInformation(this.user,  Number(this.user.id)).subscribe((account) => {
+    this.users.updateInformation(this.user, this.users.getId()).subscribe((account) => {
       console.log(this.user);
     });
   }
@@ -44,7 +51,7 @@ export class ProfileSettingsComponent implements OnInit {
   updateStudent(event) {
     const newId = +event.target.value;
     this.user.smuId = newId;
-    this.users.updateInformation(this.user,  Number(this.user.id)).subscribe((account) => {
+    this.users.updateInformation(this.user, this.users.getId()).subscribe((account) => {
       console.log(this.user);
     });
   }

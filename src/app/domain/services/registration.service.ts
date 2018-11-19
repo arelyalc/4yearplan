@@ -23,15 +23,8 @@ export class RegistrationService extends RepositoryService<User> {
        smuId: item.smuId,
        password: item.password
      };
-     console.log('Heehee Did this actually work?? Do I store the correct information')
-     return this.httpClient.post<User>(`${this.endPoint}/register`, item, this.httpOptions).do(res => {
-      this.setSession(res.id); // will get token from back soon, use user name for now
-    }).pipe(
+     return this.httpClient.post<User>(`${this.endPoint}/register`, item, this.httpOptions).pipe(
       catchError(this.handleException)
     );
    }
-   // this is used for setting the session
-  private setSession(authResult: string) {
-    localStorage.setItem('id', authResult);
-  }
 }

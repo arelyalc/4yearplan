@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Plan } from '../../domain/models/plan';
 import { SigninService } from '../../domain/services/signin.service';
 import { Course } from '../../domain/models/course';
+import { $ } from 'protractor';
 
 @Component({
   selector: 'app-dashboard',
@@ -64,6 +65,8 @@ export class DashboardComponent implements OnInit {
       { code: 'QF', name: 'Statistics' },
       { code: 'None', name: 'World History' }
     ];
+
+    // retrieving all of the plans for x specific user
     this.plans.getPlans(this.signin.getId()).subscribe((plan) => {
       this.planList = plan;
     });
@@ -85,7 +88,7 @@ export class DashboardComponent implements OnInit {
     const id = this.signin.getId();
     this.plans.sendTaken(id, this.taken).subscribe((plan) => {
       console.log('Prev credit saved');
-    }); // add error handling heree
+    }); 
 
     this.genPlan();
   }
@@ -198,9 +201,19 @@ export class DashboardComponent implements OnInit {
   // this method is used to redirect to the appropriate plan once selected from the saved plans tab
   goPlan(name: string) {
     // get appropriate plan
-    // this.plan = ;
+    let i;
+    console.log('were here jdfdsfjdfsdjkfdslfdsjlfjdl!!!!!!!!!');
+    for(i = 0; i < this.planList.length; i++) {
+      if(this.planList[i]['name'] === name) {
+        this.plan = this.planList[i];
+        console.log('the plan is equal to ' + name);
+      }
+    }
     const id = this.signin.getId();
-    this.router.navigate(['/user', id, 'dashboard']);
+    console.log(id);
+    const temp = '/user/' + id + '/dashboard';
+    this.router.navigateByUrl(temp);
+    // location.reload();
   }
 
   //this function will log out a user
