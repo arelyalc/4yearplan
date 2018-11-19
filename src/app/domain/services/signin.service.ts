@@ -23,14 +23,14 @@ export class SigninService extends RepositoryService<User> {
       password: password
     };
     const item = JSON.stringify(obj);
-    return this.httpClient.post<User>(`${this.endPoint}`,
+    return this.httpClient.post<string>(`${this.endPoint}`,
       obj, this.httpOptions).do(res => {
-          this.setSession(res);
+          this.setSession(res); // will get token from back soon, use user name for now
         }).pipe(catchError(this.handleException));
   }
 
   // this is used for setting the session
-  private setSession(authResult: object) {
+  private setSession(authResult: string) {
     localStorage.setItem('id', authResult);
   }
 

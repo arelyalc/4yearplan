@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { User } from '../models';
 import { Plan } from '../models/plan';
+import { Course } from '../models/course';
 
 @Injectable()
 export abstract class RepositoryService<T> {
@@ -81,6 +82,11 @@ public delete(id: number): Observable<T> {
   return this.httpClient.delete<T>(`${this.endPoint}/${id}`, this.httpOptions).pipe(
     catchError(this.handleException)
   );
+}
+
+getCourses(): Observable<Course[]> {
+  return this.httpClient.get<Course[]>(`${this.endPoint}/courses`, this.httpOptions).pipe(
+    catchError(this.handleException));
 }
 
 // this method is used for generating a specific plan - used for displaying a plan when they click on it

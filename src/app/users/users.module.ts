@@ -9,6 +9,7 @@ import { Profile } from 'selenium-webdriver/firefox';
 import { RepositoryService } from '../domain/services';
 
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -16,7 +17,7 @@ import { RepositoryService } from '../domain/services';
   ],
   declarations: [ DashboardComponent, ProfileSettingsComponent],
   providers: [
-    RepositoryService, SigninService
+    SigninService, RepositoryService
   ]
 })
 export class UsersModule { }

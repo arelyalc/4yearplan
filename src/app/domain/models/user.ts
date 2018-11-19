@@ -1,7 +1,7 @@
 import {Serializable} from '../interfaces';
 
 export class User implements Serializable<User> {
-    id?: number;
+    id?: string;
     email?: string;
     name?: string;
     smuId?: number;
