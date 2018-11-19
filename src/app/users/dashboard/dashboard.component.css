@@ -1,0 +1,59 @@
+#logo {
+    width: 68%;
+}
+
+.button-wrapper{
+    margin-right:1.5em;
+}
+
+.navWrapper{
+    padding:0 1em;
+    margin-right: 17em;
+    border-right: solid white .01em;
+}
+
+#Bottom{
+    padding-right: 17em;
+}
+
+.tab-pane {
+    margin-left: -1em;
+    padding: 1.5em 1em 1.5em 1em;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 35%;
+}
+
+#title {
+    font-family: 'Palatino', sans-serif;
+    letter-spacing: .05em;
+    margin-left: .6em;
+}
+
+#robot {
+    opacity: 0.3;
+}
+
+.year {
+    font-family: 'Chalkduster';
+    text-align: center;
+}
+
+#classes {
+    font-family: 'Chalkduster';
+    text-align: center;
+    color: rgb(184, 75, 75);
+}
+
+#height {
+    min-height: 23em;
+}
+
+.saveBtn {
+    font-size: 97%;
+    margin-left: 47.5em;
+}
