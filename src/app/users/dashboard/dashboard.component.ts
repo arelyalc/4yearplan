@@ -87,6 +87,7 @@ export class DashboardComponent implements OnInit {
       console.log('Prev credit saved');
     }); // add error handling heree
 
+    console.log(this.taken);
     this.genPlan();
   }
 
@@ -136,17 +137,22 @@ export class DashboardComponent implements OnInit {
 
           let takeClass = true;
 
-          for (const uc in UC) {
+          // tslint:disable-next-line:forin
+          for (let j = 0; j < UC.length; j++) {
 
-            if (this.taken.includes(uc)) {
+            if (this.taken.includes(UC[j])) {
               takeClass = false;
+              console.log('this.taken already includes ' + UC[j]);
+              console.log(currCourse.id + ' not added');
+              break;
             }
           } // end uc for loop
 
           // add to plan if it's a needed UC and not a duplicate order # (aka alt option)
           // to cycle through alt options, will think through logic later- will probably
           // need a random number generator and modulus operator
-          if (takeClass === true && currCourse.order === orderIdx) {
+          // tslint:disable-next-line:triple-equals
+          if (takeClass == true && currCourse.order == orderIdx) {
             temp.push(currCourse.id);
             console.log(currCourse.id + ' added');
             orderIdx++;
