@@ -45,7 +45,8 @@ export class SigninService extends RepositoryService<User> {
     var obj = {
         email: item.email, 
         password: item.password,
-        name: item.name
+        name: item.name,
+        smuId: item.smuId
     }
     const user = item.serialize(obj);
     return this.httpClient.put<User>(`${this.endPoint}/${id}`, user, this.httpOptions).pipe(

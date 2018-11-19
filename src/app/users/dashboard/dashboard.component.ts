@@ -170,10 +170,10 @@ export class DashboardComponent implements OnInit {
     this.plans.saveCurrentPlan(id, this.plan).subscribe((plan) => {
       // this.plan = plan;
       console.log(plan);
-      //  this.plans.getPlans(this.signin.getId()).subscribe((plan2) => {
-      //    this.planList = plan2;
-      //    console.log(this.planList);
-      //  });
+       this.plans.getPlans(this.signin.getId()).subscribe((plan2) => {
+         this.planList = plan2;
+         console.log(this.planList);
+       });
     });
     // alert('successfully saved your plan!! check it out under saved plans tab ~');
   }
