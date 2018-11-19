@@ -8,13 +8,16 @@ passport.use(new LocalStrategy({
 
     // Editing local strategy to ask for email
     // instead of username
-    usernameField: 'email'
+    usernameField: 'smuId'
   },
   function(username, password, done) {
 
     // Mongo query
-    User.findOne({ email: username }, function (err, user) {
-      if (err) { return done(err); }
+    User.findOne({ smuId: username }, function (err, user) {
+      if (err) { 
+        console.log(err); 
+        return;
+      }
       // Return if user not found in database
       if (!user) {
         return done(null, false, {
@@ -29,7 +32,7 @@ passport.use(new LocalStrategy({
         });
       }
       // If credentials are correct, return the user object
-      return done(null, user);
+      return done(null, user._id);
     });
   }
 ));

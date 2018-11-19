@@ -25,18 +25,22 @@ module.exports = function (app) {
 	// REGISTER
 	// takes in name email smu id and password
 	app.post('/api/register', function (req, res, next) {
-
+		console.log(req.body); 
 		var user = new User();
 		user.name = req.body.name;
 		user.smuId = req.body.smuId;
 		user.email = req.body.email;
 		user.password = req.body.password;
-
 		//user.setPassword(req.body.password);
 
+		console.log(user); 
 		user.save(function (err, user) {
-			if (err) return console.error(err);
-			res.status(200).json(user);
+			if (err) {
+				console.log(err); 
+				return; 
+			} else {
+				res.status(200).json(user); 
+			}
 		});
 	});
 	// LOGIN
@@ -80,6 +84,38 @@ module.exports = function (app) {
 		// })(req, res);
 
 	});
+
+	// CHANGE PASSWORD
+	app.put('/api/password', function (req, res, next) {
+		
+		console.log("HIT CHANGE PASSWORD ROUTE"); 
+
+		var myquery = { _id: req.body.id };
+		var newvalues = { $set: { password: req.body.password } };
+		User.updateOne(myquery, newvalues, function (err, info) {
+			if (err) throw err;
+			res.status(200).json('Password updated');  
+		});
+
+	});
+
+
+	// UPDATE PROFILE INFO
+	//  Does password get changed here too?
+	app.put('/api/users/:id', function (req, res, next) {
+		
+		console.log("HIT CHANGE PROFILE ROUTE"); 
+
+		var myquery = { _id: req.params.id };
+		var newvalues = { $set: { name: req.body.name,
+								  email: req.body.email,
+								  smuId: req.body.smuId } };
+		User.updateOne(myquery, newvalues, function (err, info) {
+			if (err) throw err;
+			res.status(200).json('Profile updated');  
+		});
+
+	})
 
 
 	// SAVE PREVIOUS CREDIT
