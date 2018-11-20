@@ -233,7 +233,6 @@ export class DashboardComponent implements OnInit {
   goPlan(name: string) {
     // get appropriate plan
     let i;
-    console.log('were here jdfdsfjdfsdjkfdslfdsjlfjdl!!!!!!!!!');
     for (i = 0; i < this.planList.length; i++) {
       if (this.planList[i]['name'] === name) {
         this.plan = this.planList[i];

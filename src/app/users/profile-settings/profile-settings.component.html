@@ -9,10 +9,10 @@
                     My Account
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" routerlink='/user/settings'>Update Profile</a>
-                    <a class="dropdown-item" href="#">Change Password</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Log out</a>
+                    <a class="dropdown-item" style="cursor: pointer;" (click)="updateProf()">Update Profile</a>
+                    <a class="dropdown-item" href="https://www.smu.edu/~/media/Site/catalog/PDF/UGrad/2014/2014_SMU_UGcatalog_LyleSchoolSection.ashx" target="_blank">Course Catalog</a>
+                    <div class="dropdown-divider" ></div>
+                    <a class="dropdown-item" style="cursor: pointer;" (click)='logout()'>Log out</a>
                 </div>
             </li>
         </ul>

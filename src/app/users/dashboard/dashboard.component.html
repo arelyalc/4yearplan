@@ -10,10 +10,10 @@
                     My Account
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" (click)="updateProf()">Update Profile</a>
+                    <a class="dropdown-item" style="cursor: pointer;" (click)="updateProf()">Update Profile</a>
                     <a class="dropdown-item" href="https://www.smu.edu/~/media/Site/catalog/PDF/UGrad/2014/2014_SMU_UGcatalog_LyleSchoolSection.ashx" target="_blank">Course Catalog</a>
                     <div class="dropdown-divider" ></div>
-                    <a class="dropdown-item" (click)='logout()'>Log out</a>
+                    <a class="dropdown-item" style="cursor: pointer;" (click)='logout()'>Log out</a>
                 </div>
             </li>
         </ul>
@@ -120,6 +120,7 @@
                 </div>
             </div>
             <br>
+            <p style="font-family: Helvetica; margin-left: 1em;">Currently displaying: <strong> {{plan.name}} </strong></p>
             <button class="saveBtn btn btn-lg" type="button" style="background-color: purple; color: white;" data-toggle="modal" data-target="#NameModal">Save!</button>
         </div>
         <br> <br>
@@ -146,7 +147,7 @@
             </div>
             <div *ngFor="let plan of planList" class="row">
                 <div class="col-6">
-                    <h5 style="font-family: Helvetica; text-align: center; color: plum;"><a (click)="goPlan(plan.name)">{{plan.name}}</a></h5>
+                    <h5 style="font-family: Helvetica; text-align: center; color: rgb(136, 182, 224); cursor: pointer;"><a (click)="goPlan(plan.name)"><strong>{{plan.name}}</strong></a></h5>
                 </div>
                 <div class="col-6">
                     <h5 style="font-family: Helvetica; text-align: center; color: gray;">{{plan.date | date:'longDate'}}</h5>

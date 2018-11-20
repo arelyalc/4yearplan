@@ -55,4 +55,16 @@ export class ProfileSettingsComponent implements OnInit {
     });
   }
 
+   // this method is used to redirect to the profile settings page
+   updateProf() {
+    const id = this.users.getId();
+    this.router.navigate(['/user', id, 'settings']);
+  }
+
+  // this function will log out a user
+  logout() {
+    this.users.logOut();
+    this.router.navigateByUrl('home');
+  }
+
 }

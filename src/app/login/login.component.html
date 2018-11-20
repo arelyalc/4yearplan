@@ -16,21 +16,21 @@
         <br>
         <br>
         <form>
-            <label>SMU ID:</label>
-            <input [(ngModel)]="smuId" type="text" id="email" class="fadeIn second" name="login" placeholder="email" required>
-            <br>
-            <br>
-            <label>Password:</label>
-            <input type="password" [(ngModel)]="password" id="password" class="fadeIn third" name="login" required>
-            <br>
-            <br>
-            <input type="submit" class="fadeIn fourth" value="Log In" (click)="login()">
+                <label>SMU ID:</label>
+                <input [(ngModel)]="smuId" type="text" id="email" class="fadeIn second" name="login" placeholder="email" required>
+                <br>
+                <br>
+                <label>Password:</label>
+                <input [(ngModel)]="password" type="text" id="password" class="fadeIn third" name="login" placeholder="password" required>
+                <br>
+                <br>
+                <input type="submit" class="fadeIn fourth" value="Log In" (click)="login()">
         </form>
 
             <!-- Remind Passowrd -->
         <div id="formFooter">
            <!-- <p class="fadeIn second">Forgot Password? <a class="fadeIn third" [routerLink]="['/password']">Click Here</a></p> -->
-           <p class="fadeIn second">Don't have an account?  <a class="fadeIn third" [routerLink]="['/registration']">Sign up!!</a></p>
+           <p class="fadeIn second">Don't have an account?  <a class="fadeIn third" href="/registration">Sign up!!</a></p>
         </div>
     </div>
 </body>

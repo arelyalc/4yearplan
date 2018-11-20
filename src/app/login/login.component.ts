@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
 
   // this method is used to redirect the user to their dashboard once their credentials are authenticated
   public login() {
+    console.log(this.smuId);
     this.sigin.logIn(this.smuId, this.password).subscribe(x => {
       const name = 'user/' + x + '/dashboard';
       this.router.navigateByUrl(name);
