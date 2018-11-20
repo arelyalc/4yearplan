@@ -147,8 +147,8 @@ module.exports = function (app) {
 
 		console.log("HIT PREV CREDIT ROUTE"); 
 
-		var myquery = { _id: req.body.taken };
-		var newvalues = { $set: { taken: final } };
+		var myquery = { _id: req.body.id };
+		var newvalues = { $set: { taken: req.body.taken } };
 		User.updateOne(myquery, newvalues, function (err, info) {
 			//if (err) throw err;
 			res.status(200).json('Previous credit added to user');  //CHECK THIS FUNCTION CALL
