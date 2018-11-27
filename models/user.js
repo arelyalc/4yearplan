@@ -1,21 +1,22 @@
+// import db, hashing, and jwt libaries
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
-var ObjectId = mongoose.Schema.Types.ObjectId;
 
 var UserSchema = new mongoose.Schema({
   email: String,
   name: String,
   smuId: Number,
-  password: String,
-  hash: String,
-  taken: [String]
-  //assumption: front handles ap translation to courses (or requirements, tbd)
+  password: String, // salt used to obfuscate password
+  hash: String, // hash of password
+  taken: [String] // array of courses taken
 });
 
+// function used by server route
 UserSchema.methods.setPassword = function (password) {
 
     console.log('Hashing password'); 
+    // create salt, hash password, and save hash
     bcrypt.genSalt(10, function (err, salt) {
       if (err) console.log(err); 
       bcrypt.hash(password, salt, function (err, hash) {
@@ -30,12 +31,16 @@ UserSchema.methods.setPassword = function (password) {
     });
 };
 
+// function to validate password
 UserSchema.methods.validPassword = function (password) {
+  // hash input and compare with saved hash
   bcrypt.compare(password, this.hash, function (err, res) {
     return res;
   });
 };
 
+// use date and user attributes, sign with encryption algorithm
+// and return token
 UserSchema.methods.generateJwt = function () {
   var expiry = new Date();
   expiry.setDate(expiry.getDate() + 7);
@@ -45,7 +50,7 @@ UserSchema.methods.generateJwt = function () {
     smuId: this.smuId,
     name: this.name,
     exp: parseInt(expiry.getTime() / 1000),
-  }, "MY_SECRET"); // DO NOT KEEP YOUR SECRET IN THE CODE!
+  }, "4YRTOKE"); 
 };
 
 module.exports = mongoose.model('User', UserSchema);
