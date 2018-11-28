@@ -1,5 +1,6 @@
 import {Serializable} from '../interfaces';
 
+// used to match course object from back end
 export class Course implements Serializable<Course> {
     order?: number;
     id?: string;

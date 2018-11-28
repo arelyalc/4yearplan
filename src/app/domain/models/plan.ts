@@ -1,5 +1,6 @@
 import { Serializable } from './../interfaces/serializable';
 
+// contains class codes organized into semester arrays
 export class Plan implements Serializable<Plan> {
     name?: string;
     date?: Date;

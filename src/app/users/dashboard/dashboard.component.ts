@@ -15,12 +15,12 @@ import { $ } from 'protractor';
 export class DashboardComponent implements OnInit {
 
   @Input()
-  taken: string[] = [];
-  options: Class[];
-  plan: Plan;
-  planList: Plan[];
-  planName: string;
-  allClasses: Course[];
+  taken: string[] = []; // will be used to save ap credit taken by a student
+  options: Class[]; // will be used for alternative classes
+  plan: Plan; // actual plan object
+  planList: Plan[]; // list of saved plans
+  planName: string; // name of new plan to be saved
+  allClasses: Course[]; // result of get courses back end route
 
 
   constructor(
@@ -32,6 +32,8 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // maps an inputed ap credit to its corresponding 
+    // satisfied UC requirements
     this.options = [
       { code: 'IIC1', name: 'American History' },
       { code: 'CA1', name: 'Art' },
@@ -82,7 +84,8 @@ export class DashboardComponent implements OnInit {
     this.planName = e.target.value;
   }
 
-  // this method is used to send the taken array to the backend so that the 4yearplan is generated
+  // this method is used to send the taken array to the backend
+  // so that it can be saved with the appropriate user document
   save() {
 
     const id = this.signin.getId();
@@ -115,10 +118,11 @@ export class DashboardComponent implements OnInit {
     this.genPlan();
   }
 
+  // called to actually calculate the 4 year plan
+  // heart of the application is here
   genPlan() {
     this.plan = new Plan();
     this.plan.altCourses = [];
-    console.log(this.taken);
 
     // get all courses in array of objects from backend
     this.courses.getCourses().subscribe((courses) => {
@@ -134,9 +138,8 @@ export class DashboardComponent implements OnInit {
         }
       }); // end sort
 
-      // assign class variable and debug with console output
+      // assign class variable 
       this.allClasses = courses;
-      console.log(this.allClasses);
 
       // index to keep track of position in allClasses array
       let allClassesIdx = 0;
@@ -175,8 +178,6 @@ export class DashboardComponent implements OnInit {
           } // end uc for loop
 
           // add to plan if it's a needed UC
-          // TODO: cycle through alt options, will think through logic later- will probably
-          // need a random number generator and modulus operator
           if (takeClass === true) {
             // if this is not an alternative option (first of its order in array)
             if (currCourse.order === orderIdx) {
@@ -192,6 +193,7 @@ export class DashboardComponent implements OnInit {
           allClassesIdx++;
         }
 
+        // add to plan obj with appropriate naming
         this.plan['sem' + (i + 1)] = temp;
 
       } // end semester for loop aka plan generated
