@@ -16,10 +16,12 @@ In the future, we hope to transition to a more integrated deployment process, in
 
 ## Back-end code structure
 
-server.js contains all the middleware used by the server itself, as well as the code to start running the server on port 3000. 
-routes.js contains the actual api routes that are called by the front-end, and that access the mongodb instance.
-db.js contains the code to connect to the remote mongodb instance.
-Each schema object has its own exported model file that is used in the routes. (ex: user.js, plan.js)
+`server.js` contains all the middleware used by the server itself, as well as the code to start running the server on port 3000. 
+
+`routes.js` contains the actual api routes that are called by the front-end, and that access the mongodb instance.
+`db.js` contains the code to connect to the remote mongodb instance.
+
+Each schema object has its own exported model file that is used in the routes. (ex: `user.js`, `plan.js`)
 
 ## Front-end code structure
 
