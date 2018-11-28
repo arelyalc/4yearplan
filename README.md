@@ -1,4 +1,4 @@
-# Genproject
+# 4 Year Plan Generator
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.5 and express 4. The main two branches that host the project code are `dev` and `server`.
 
@@ -27,4 +27,4 @@ Each schema object has its own exported model file that is used in the routes. (
 
 The angular app is split into modules according to feature areas. These include home-page, llogin, registration, users/dashboard, users/profile-settings, and the main app itself. Client side routing with route protection was used to connect these components together. The main landing screen of the app can be found in the dashboard component, which contains te heart of the plan generation algorithm and much more. 
 
-## INSTALLATION AND USAGE
+# INSTALLATION AND USAGE
