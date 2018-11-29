@@ -5,9 +5,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Installation and Usage
 
-<p>[Installation Instructions](https://drive.google.com/open?id=1emj8KUSUy5GcY5MhTDPzHxre0sNCH9nsWooYc9h7HjM)</p>
-<p>[Admin Instructions](https://drive.google.com/open?id=1DZMZWr-f1_TPr6iophWI2Sba5VFD2-IM3diHNdMLpFk)</p>
-<p>[User Instructions](https://drive.google.com/open?id=1xnmkN7tqGU8AoMYRax8qcDsTQPzvdhPWFWxo0h7_Xxs)</p>
+[Installation Instructions](https://drive.google.com/open?id=1emj8KUSUy5GcY5MhTDPzHxre0sNCH9nsWooYc9h7HjM)</br>
+[Admin Instructions](https://drive.google.com/open?id=1DZMZWr-f1_TPr6iophWI2Sba5VFD2-IM3diHNdMLpFk)</br>
+[User Instructions](https://drive.google.com/open?id=1xnmkN7tqGU8AoMYRax8qcDsTQPzvdhPWFWxo0h7_Xxs)
 
 ## Front-end code structure
 
